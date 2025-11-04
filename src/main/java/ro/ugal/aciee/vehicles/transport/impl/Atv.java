@@ -4,6 +4,7 @@ import ro.ugal.aciee.vehicles.transport.source.VehicleColor;
 import ro.ugal.aciee.vehicles.transport.types.RollingVehicle;
 
 public class Atv extends RollingVehicle {
+
     private int size;
     private boolean spareWheel;
 
