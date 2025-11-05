@@ -1,11 +1,12 @@
 package ro.ugal.aciee.vehicles.transport.impl;
 
 import ro.ugal.aciee.vehicles.transport.source.VehicleColor;
-import ro.ugal.aciee.vehicles.transport.types.AquaVehicle;
+import ro.ugal.aciee.vehicles.transport.types.NavalVehicle;
 
-public class Yacht extends AquaVehicle{
-   private boolean hasPool;
-   private boolean sailsRaised;
+public class Yacht extends NavalVehicle {
+
+    private boolean hasPool;
+    private boolean sailsRaised;
 
     public Yacht() {
         super();
@@ -25,7 +26,7 @@ public class Yacht extends AquaVehicle{
 
     public boolean getIsHasPool() {
         return hasPool;
-  }
+    }
 
     public void setHasPool(boolean hasPool) {
         this.hasPool = hasPool;
@@ -42,9 +43,9 @@ public class Yacht extends AquaVehicle{
     @Override
     public String toString() {
         return "Yacht{" +
-                "hasPool=" + hasPool +
-                ", sailsRaised=" + sailsRaised +
-                '}';
+               "hasPool=" + hasPool +
+               ", sailsRaised=" + sailsRaised +
+               '}';
     }
 }
 

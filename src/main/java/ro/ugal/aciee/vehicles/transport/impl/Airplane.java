@@ -4,6 +4,7 @@ import ro.ugal.aciee.vehicles.transport.source.VehicleColor;
 import ro.ugal.aciee.vehicles.transport.types.AeroVehicle;
 
 public class Airplane extends AeroVehicle {
+
     private boolean isFragileCargo;
     private double wingspan;
 
@@ -42,8 +43,8 @@ public class Airplane extends AeroVehicle {
     @Override
     public String toString() {
         return "Airplane{" +
-                "isFragileCargo=" + isFragileCargo +
-                ", wingspan=" + wingspan +
-                '}';
+               "isFragileCargo=" + isFragileCargo +
+               ", wingspan=" + wingspan +
+               '}';
     }
 }

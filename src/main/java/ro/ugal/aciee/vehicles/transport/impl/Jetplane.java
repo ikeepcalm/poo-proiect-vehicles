@@ -5,46 +5,47 @@ import ro.ugal.aciee.vehicles.transport.types.AeroVehicle;
 
 
 public class Jetplane extends AeroVehicle {
-    private double maxJ;
-    private boolean isNoseSharp;
+
+    private double maxG;
+    private boolean sharpNose;
 
     public Jetplane() {
         super();
     }
 
-    public Jetplane(VehicleColor color, int year, int mileage, int capacity, int fuelCapacity, int fuelConsumption, int fuelLevel, double speed, boolean accelerating, boolean braking, int loadCapacity, int maxHeight, int amountOfEngines, boolean isNoseSharp, double maxJ) {
+    public Jetplane(VehicleColor color, int year, int mileage, int capacity, int fuelCapacity, int fuelConsumption, int fuelLevel, double speed, boolean accelerating, boolean braking, int loadCapacity, int maxHeight, int amountOfEngines, boolean sharpNose, double maxG) {
         super(color, year, mileage, capacity, fuelCapacity, fuelConsumption, fuelLevel, speed, accelerating, braking, loadCapacity, maxHeight, amountOfEngines);
-        this.isNoseSharp = isNoseSharp;
-        this.maxJ = maxJ;
+        this.sharpNose = sharpNose;
+        this.maxG = maxG;
     }
 
     public Jetplane(Jetplane other) {
         super(other);
-        this.maxJ = other.maxJ;
-        this.isNoseSharp = other.isNoseSharp;
+        this.maxG = other.maxG;
+        this.sharpNose = other.sharpNose;
     }
 
-    public boolean isNoseSharp() {
-        return isNoseSharp;
+    public boolean isSharpNose() {
+        return sharpNose;
     }
 
-    public void setNoseSharp(boolean noseSharp) {
-        isNoseSharp = noseSharp;
+    public void setSharpNose(boolean sharpNose) {
+        this.sharpNose = sharpNose;
     }
 
-    public double getMaxJ() {
-        return maxJ;
+    public double getMaxG() {
+        return maxG;
     }
 
-    public void setMaxJ(double maxJ) {
-        this.maxJ = maxJ;
+    public void setMaxG(double maxG) {
+        this.maxG = maxG;
     }
 
     @Override
     public String toString() {
         return "Jetplane{" +
-                "maxJ=" + maxJ +
-                ", isNoseSharp=" + isNoseSharp +
-                '}';
+               "maxJ=" + maxG +
+               ", isNoseSharp=" + sharpNose +
+               '}';
     }
 }

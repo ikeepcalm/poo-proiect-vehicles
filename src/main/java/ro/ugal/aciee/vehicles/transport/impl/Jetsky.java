@@ -1,26 +1,27 @@
 package ro.ugal.aciee.vehicles.transport.impl;
 
 import ro.ugal.aciee.vehicles.transport.source.VehicleColor;
-import ro.ugal.aciee.vehicles.transport.types.AquaVehicle;
+import ro.ugal.aciee.vehicles.transport.types.NavalVehicle;
 
-public class Jetsky extends AquaVehicle {
+public class Jetsky extends NavalVehicle {
+
     private int amountOfPilots;
-    private double loudnessl;
+    private double loudness;
 
     public Jetsky() {
         super();
     }
 
-    public Jetsky(VehicleColor color, int year, int mileage, int capacity, int fuelCapacity, int fuelConsumption, int fuelLevel, double speed, boolean accelerating, boolean braking, int amountOfPilots, double loudnessl) {
+    public Jetsky(VehicleColor color, int year, int mileage, int capacity, int fuelCapacity, int fuelConsumption, int fuelLevel, double speed, boolean accelerating, boolean braking, int amountOfPilots, double loudness) {
         super(color, year, mileage, capacity, fuelCapacity, fuelConsumption, fuelLevel, speed, accelerating, braking);
         this.amountOfPilots = amountOfPilots;
-        this.loudnessl = loudnessl;
+        this.loudness = loudness;
     }
 
-    public Jetsky( Jetsky other) {
+    public Jetsky(Jetsky other) {
         super(other);
         this.amountOfPilots = other.amountOfPilots;
-        this.loudnessl = other.loudnessl;
+        this.loudness = other.loudness;
     }
 
     public int getAmountOfPilots() {
@@ -31,20 +32,20 @@ public class Jetsky extends AquaVehicle {
         this.amountOfPilots = amountOfPilots;
     }
 
-    public double getLoudnessl() {
-        return loudnessl;
+    public double getLoudness() {
+        return loudness;
     }
 
-    public void setLoudnessl(double loudnessl) {
-        this.loudnessl = loudnessl;
+    public void setLoudness(double loudness) {
+        this.loudness = loudness;
     }
 
     @Override
     public String toString() {
         return "Jetsky{" +
-                "amountOfPilots=" + amountOfPilots +
-                ", loudnessl=" + loudnessl +
-                '}';
+               "amountOfPilots=" + amountOfPilots +
+               ", loudnessl=" + loudness +
+               '}';
     }
 }
 
