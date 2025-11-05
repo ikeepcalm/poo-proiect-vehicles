@@ -39,6 +39,18 @@ public class ElectricBike extends RollingVehicle {
     }
 
     @Override
+    public void accelerate() {
+        super.accelerate();
+        this.setSpeed(10);
+    }
+
+    @Override
+    public void brake() {
+        super.brake();
+        this.setSpeed(0);
+    }
+
+    @Override
     public String toString() {
         return "ElictricBike{" +
                "range=" + range +

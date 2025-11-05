@@ -44,6 +44,18 @@ public class Atv extends RollingVehicle {
     }
 
     @Override
+    public void accelerate() {
+        super.accelerate();
+        this.spareWheel = false;
+    }
+
+    @Override
+    public void brake() {
+        super.brake();
+        this.spareWheel = true;
+    }
+
+    @Override
     public String toString() {
         return "Atv{" +
                 "size=" + size +
