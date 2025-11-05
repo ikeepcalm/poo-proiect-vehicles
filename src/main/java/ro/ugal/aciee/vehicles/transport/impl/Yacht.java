@@ -1,5 +1,6 @@
 package ro.ugal.aciee.vehicles.transport.impl;
 
+import ro.ugal.aciee.vehicles.transport.Vehicle;
 import ro.ugal.aciee.vehicles.transport.source.VehicleColor;
 import ro.ugal.aciee.vehicles.transport.types.NavalVehicle;
 
@@ -12,16 +13,16 @@ public class Yacht extends NavalVehicle {
         super();
     }
 
-    public Yacht(VehicleColor color, int year, int mileage, int capacity, int fuelCapacity, int fuelConsumption, int fuelLevel, double speed, boolean accelerating, boolean braking, boolean sailsRaised, boolean hasPool) {
-        super(color, year, mileage, capacity, fuelCapacity, fuelConsumption, fuelLevel, speed, accelerating, braking);
-        this.sailsRaised = sailsRaised;
+    public Yacht(VehicleColor color, int year, int mileage, int capacity, int fuelCapacity, int fuelConsumption, int fuelLevel, double speed, boolean accelerating, boolean braking, int buoyancyInKg, boolean hasPool, boolean sailsRaised) {
+        super(color, year, mileage, capacity, fuelCapacity, fuelConsumption, fuelLevel, speed, accelerating, braking, buoyancyInKg);
         this.hasPool = hasPool;
+        this.sailsRaised = sailsRaised;
     }
 
-    public Yacht(Yacht other) {
-        super(other);
-        this.hasPool = other.hasPool;
-        this.sailsRaised = other.sailsRaised;
+    public Yacht(Vehicle other, int buoyancyInKg, boolean hasPool, boolean sailsRaised) {
+        super(other, buoyancyInKg);
+        this.hasPool = hasPool;
+        this.sailsRaised = sailsRaised;
     }
 
     public boolean getIsHasPool() {

@@ -1,5 +1,6 @@
 package ro.ugal.aciee.vehicles.transport.impl;
 
+import ro.ugal.aciee.vehicles.transport.Vehicle;
 import ro.ugal.aciee.vehicles.transport.source.VehicleColor;
 import ro.ugal.aciee.vehicles.transport.types.NavalVehicle;
 
@@ -12,16 +13,16 @@ public class Jetsky extends NavalVehicle {
         super();
     }
 
-    public Jetsky(VehicleColor color, int year, int mileage, int capacity, int fuelCapacity, int fuelConsumption, int fuelLevel, double speed, boolean accelerating, boolean braking, int amountOfPilots, double loudness) {
-        super(color, year, mileage, capacity, fuelCapacity, fuelConsumption, fuelLevel, speed, accelerating, braking);
+    public Jetsky(Vehicle other, int buoyancyInKg, int amountOfPilots, double loudness) {
+        super(other, buoyancyInKg);
         this.amountOfPilots = amountOfPilots;
         this.loudness = loudness;
     }
 
-    public Jetsky(Jetsky other) {
-        super(other);
-        this.amountOfPilots = other.amountOfPilots;
-        this.loudness = other.loudness;
+    public Jetsky(VehicleColor color, int year, int mileage, int capacity, int fuelCapacity, int fuelConsumption, int fuelLevel, double speed, boolean accelerating, boolean braking, int buoyancyInKg, int amountOfPilots, double loudness) {
+        super(color, year, mileage, capacity, fuelCapacity, fuelConsumption, fuelLevel, speed, accelerating, braking, buoyancyInKg);
+        this.amountOfPilots = amountOfPilots;
+        this.loudness = loudness;
     }
 
     public int getAmountOfPilots() {

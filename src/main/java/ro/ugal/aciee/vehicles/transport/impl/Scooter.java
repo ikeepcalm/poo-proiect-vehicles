@@ -9,15 +9,14 @@ public class Scooter extends RollingVehicle {
     private double batteryKWh;
     private int maxSpeedKmh;
 
-    public Scooter(boolean electric) {
+    public Scooter() {
+        super();
+    }
+
+    public Scooter(RollingVehicle other, boolean electric, double batteryKWh, int maxSpeedKmh) {
+        super(other);
         this.electric = electric;
-    }
-
-    public Scooter(double batteryKWh) {
         this.batteryKWh = batteryKWh;
-    }
-
-    public Scooter(int maxSpeedKmh) {
         this.maxSpeedKmh = maxSpeedKmh;
     }
 
@@ -55,10 +54,10 @@ public class Scooter extends RollingVehicle {
     @Override
     public String toString() {
         return "Scooter{" +
-                "electric=" + electric +
-                ", batteryKWh=" + batteryKWh +
-                ", maxSpeedKmh=" + maxSpeedKmh +
-                '}';
+               "electric=" + electric +
+               ", batteryKWh=" + batteryKWh +
+               ", maxSpeedKmh=" + maxSpeedKmh +
+               '}';
     }
 
 
