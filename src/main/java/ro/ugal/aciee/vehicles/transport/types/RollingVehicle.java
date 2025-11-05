@@ -11,6 +11,18 @@ public class RollingVehicle extends Vehicle {
 
     private int horsePower;
 
+    @Override
+    public void accelerate() {
+        System.out.println("Wroom wroom!");
+        super.setSpeed(super.getSpeed() * horsePower * 0.01);
+    }
+
+    @Override
+    public void brake() {
+        System.out.println("Braking...");
+        super.setSpeed(super.getSpeed() * 0.9);
+    }
+
     public RollingVehicle() {
         super();
     }

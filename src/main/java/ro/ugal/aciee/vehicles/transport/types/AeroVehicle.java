@@ -11,6 +11,18 @@ public class AeroVehicle extends Vehicle {
 
     private int amountOfEngines;
 
+    @Override
+    public void accelerate() {
+        System.out.println("Accelerating...");
+        super.setFuelLevel(super.getFuelLevel() - super.getFuelConsumption());
+    }
+
+    @Override
+    public void brake() {
+        System.out.println("Braking...");
+        super.setSpeed(super.getSpeed() * 0.9);
+    }
+
     public AeroVehicle() {
         super();
     }

@@ -93,12 +93,14 @@ public class Main {
         for (Vehicle vehicle : vehicles) {
             if (vehicle instanceof AeroVehicle && vehicle.getFuelLevel() > 20) {
                 System.out.println(vehicle);
+                vehicle.accelerate();
             }
         }
 
         for (Vehicle vehicle : vehicles) {
             if (!vehicle.isBraking() && vehicle.getSpeed() > 10) {
                 System.out.println(vehicle);
+                vehicle.brake();
             }
         }
 

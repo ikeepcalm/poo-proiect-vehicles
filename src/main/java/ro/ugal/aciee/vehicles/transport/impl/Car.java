@@ -41,6 +41,18 @@ public class Car extends RollingVehicle {
     }
 
     @Override
+    public void accelerate() {
+        super.accelerate();
+        this.isRadioOn = false;
+    }
+
+    @Override
+    public void brake() {
+        super.brake();
+        this.isRadioOn = true;
+    }
+
+    @Override
     public String toString() {
         return "Car{" +
                "isRadioOn=" + isRadioOn +

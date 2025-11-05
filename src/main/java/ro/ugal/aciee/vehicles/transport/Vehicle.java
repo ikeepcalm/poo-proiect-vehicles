@@ -20,6 +20,10 @@ public abstract class Vehicle {
     private boolean accelerating;
     private boolean braking;
 
+    public abstract void accelerate();
+
+    public abstract void brake();
+
     public Vehicle() {
 
     }

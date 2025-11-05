@@ -7,6 +7,18 @@ public class NavalVehicle extends Vehicle {
 
     private int buoyancyInKg;
 
+    @Override
+    public void accelerate() {
+        System.out.println("Accelerating naval vehicle...");
+        super.setSpeed(super.getSpeed() * 1.1);
+    }
+
+    @Override
+    public void brake() {
+        System.out.println("Braking naval vehicle...");
+        this.buoyancyInKg -= 2;
+    }
+
     public NavalVehicle() {
         super();
     }
