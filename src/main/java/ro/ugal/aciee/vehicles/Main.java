@@ -33,6 +33,10 @@ public class Main {
 
         RollingVehicle bohdanCar = new Car(VehicleColor.BLACK, 2005, 2000, 4, 40, 2, 40, 0, false, false, 4, false, 160, true);
 
+        Vehicle artemsAtv = new Atv(2,true);
+
+        Vehicle artemsBIke = new ElectricBike(10,"indura");
+
         Vehicle artemPlane = new Airplane(timJetplane, 28.5, true);
 
         Vehicle sashaScooter = new RollingVehicle(bohdanCar);
