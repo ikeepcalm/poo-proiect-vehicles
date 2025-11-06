@@ -9,6 +9,7 @@ public class ElectricBike extends RollingVehicle {
     private String address;
 
     public ElectricBike() {
+        super();
     }
 
     public ElectricBike(int range, String address) {
@@ -16,8 +17,8 @@ public class ElectricBike extends RollingVehicle {
         this.address = address;
     }
 
-    public ElectricBike(VehicleColor color, int year, int mileage, int capacity, int fuelCapacity, int fuelConsumption, int fuelLevel, double speed, boolean accelerating, boolean braking, int numberOfWheels, boolean isElectric, int horsePower, int range, String address) {
-        super(color, year, mileage, capacity, fuelCapacity, fuelConsumption, fuelLevel, speed, accelerating, braking, numberOfWheels, isElectric, horsePower);
+    public ElectricBike(int year, int mileage, VehicleColor color, int maxPassengers, boolean needsMaintenance, boolean electric, int horsePower, int maxSpeedKmh, int range, String address) {
+        super(year, mileage, color, maxPassengers, needsMaintenance, electric, horsePower, maxSpeedKmh);
         this.range = range;
         this.address = address;
     }
@@ -38,23 +39,18 @@ public class ElectricBike extends RollingVehicle {
         this.address = address;
     }
 
-    @Override
-    public void accelerate() {
-        super.accelerate();
-        this.setSpeed(10);
-    }
 
     @Override
-    public void brake() {
-        super.brake();
-        this.setSpeed(0);
+    public double getDailyRentalPrice() {
+        double DefaulPrice = 20;
+        if (this.range == 100) {
+            DefaulPrice *= 0.5;
+        }
+        if (this.color == VehicleColor.PINK) {
+            DefaulPrice *= 10;
+        }
+        return  DefaulPrice;
+
     }
 
-    @Override
-    public String toString() {
-        return "ElictricBike{" +
-               "range=" + range +
-               ", address='" + address + '\'' +
-               '}';
-    }
 }

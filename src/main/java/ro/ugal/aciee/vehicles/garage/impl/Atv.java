@@ -8,23 +8,20 @@ public class Atv extends RollingVehicle {
     private int size;
     private boolean spareWheel;
 
+    public Atv() {
+        super();
+    }
+
+
     public Atv(int size, boolean spareWheel) {
         this.size = size;
         this.spareWheel = spareWheel;
     }
 
-    public Atv(VehicleColor color, int year, int mileage, int capacity, int fuelCapacity, int fuelConsumption, int fuelLevel, double speed, boolean accelerating, boolean braking, int numberOfWheels, boolean isElectric, int horsePower, int size, boolean spareWheel) {
-        super(color, year, mileage, capacity, fuelCapacity, fuelConsumption, fuelLevel, speed, accelerating, braking, numberOfWheels, isElectric, horsePower);
+    public Atv(int year, int mileage, VehicleColor color, int maxPassengers, boolean needsMaintenance, boolean electric, int horsePower, int maxSpeedKmh, int size, boolean spareWheel) {
+        super(year, mileage, color, maxPassengers, needsMaintenance, electric, horsePower, maxSpeedKmh);
         this.size = size;
         this.spareWheel = spareWheel;
-    }
-
-    public Atv() {
-    }
-
-    public Atv(boolean spareWheel, int size) {
-        this.spareWheel = spareWheel;
-        this.size = size;
     }
 
     public int getSize() {
@@ -32,7 +29,7 @@ public class Atv extends RollingVehicle {
     }
 
     public void setSize(int size) {
-        this.size = size;
+      this.size = size;
     }
 
     public boolean isSpareWheel() {
@@ -43,23 +40,22 @@ public class Atv extends RollingVehicle {
         this.spareWheel = spareWheel;
     }
 
-    @Override
-    public void accelerate() {
-        super.accelerate();
-        this.spareWheel = false;
-    }
 
     @Override
-    public void brake() {
-        super.brake();
-        this.spareWheel = true;
-    }
+    public double getDailyRentalPrice() {
+        double DefaulPrice = 100;
+        if (this.spareWheel == true) {
+            DefaulPrice *= 2;
+        }
+        if (this.size > 4) {
+            DefaulPrice += 100;
 
-    @Override
-    public String toString() {
-        return "Atv{" +
-                "size=" + size +
-                ", spareWheel=" + spareWheel +
-                '}';
+        }
+        return DefaulPrice;
     }
 }
+
+
+
+
+
