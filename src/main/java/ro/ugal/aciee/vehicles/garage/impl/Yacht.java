@@ -1,8 +1,8 @@
-package ro.ugal.aciee.vehicles.transport.impl;
+package ro.ugal.aciee.vehicles.garage.impl;
 
-import ro.ugal.aciee.vehicles.transport.Vehicle;
-import ro.ugal.aciee.vehicles.transport.source.VehicleColor;
-import ro.ugal.aciee.vehicles.transport.types.NavalVehicle;
+import ro.ugal.aciee.vehicles.garage.Vehicle;
+import ro.ugal.aciee.vehicles.garage.source.VehicleColor;
+import ro.ugal.aciee.vehicles.garage.types.NavalVehicle;
 
 public class Yacht extends NavalVehicle {
 

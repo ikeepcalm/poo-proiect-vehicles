@@ -1,7 +1,7 @@
-package ro.ugal.aciee.vehicles.transport.impl;
+package ro.ugal.aciee.vehicles.garage.impl;
 
-import ro.ugal.aciee.vehicles.transport.source.VehicleColor;
-import ro.ugal.aciee.vehicles.transport.types.AeroVehicle;
+import ro.ugal.aciee.vehicles.garage.source.VehicleColor;
+import ro.ugal.aciee.vehicles.garage.types.AeroVehicle;
 
 
 public class Jetplane extends AeroVehicle {

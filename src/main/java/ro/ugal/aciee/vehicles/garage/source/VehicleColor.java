@@ -1,4 +1,4 @@
-package ro.ugal.aciee.vehicles.transport.source;
+package ro.ugal.aciee.vehicles.garage.source;
 
 public enum VehicleColor {
 

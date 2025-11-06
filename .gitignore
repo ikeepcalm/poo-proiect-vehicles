@@ -5,6 +5,8 @@ build/
 !**/src/test/**/build/
 .kotlin
 .idea
+.claude
+PROJECT_GUIDE.md
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
