@@ -52,13 +52,29 @@ public class Scooter extends RollingVehicle {
     }
 
     @Override
-    public String toString() {
-        return "Scooter{" +
-               "electric=" + electric +
-               ", batteryKWh=" + batteryKWh +
-               ", maxSpeedKmh=" + maxSpeedKmh +
-               '}';
+    public void accelerate() {
+        super.accelerate();
+        this.setSpeed(this.getSpeed() + 8);
+        if (this.electric && this.batteryKWh > 0.1) {
+            this.batteryKWh -= 0.1;
+        }
     }
 
+    @Override public void brake() {
+            super.brake();
+            this.setSpeed(0);
+            if (this.electric && this.batteryKWh < 100) {
+                this.batteryKWh += 0.05;
+            }
+        }
 
+    @Override
+    public String toString() {
+        return "Scooter{" +
+                "electric=" + electric +
+                ", batteryKWh=" + String.format("%.2f", batteryKWh) +
+                ", maxSpeedKmh=" + maxSpeedKmh +
+                ", speed=" + getSpeed() +
+                '}';
+    }
 }

@@ -9,16 +9,8 @@ public class Motorcycle extends RollingVehicle {
     private boolean sportBike;
     private int maxSpeedKmh;
 
-    public Motorcycle(double engineCc) {
-        this.engineCc = engineCc;
-    }
-
-    public Motorcycle(boolean sportBike) {
-        this.sportBike = sportBike;
-    }
-
-    public Motorcycle(int maxSpeedKmh) {
-        this.maxSpeedKmh = maxSpeedKmh;
+    public Motorcycle() {
+        super();
     }
 
     public Motorcycle(VehicleColor color, int year, int mileage, int capacity, int fuelCapacity, int fuelConsumption, int fuelLevel, double speed, boolean accelerating, boolean braking, int numberOfWheels, boolean isElectric, int horsePower, double engineCc) {
@@ -40,6 +32,18 @@ public class Motorcycle extends RollingVehicle {
 
     public void setMaxSpeedKmh(int maxSpeedKmh) {
         this.maxSpeedKmh = maxSpeedKmh;
+    }
+
+    @Override
+    public void accelerate() {
+        super.accelerate();
+        this.setSpeed(this.getSpeed() + 15);
+    }
+
+    @Override
+    public void brake() {
+        super.brake();
+        this.setSpeed(0);
     }
 
     @Override
