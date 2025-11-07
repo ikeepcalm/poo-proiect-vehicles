@@ -12,23 +12,23 @@ public class Airplane extends AeroVehicle {
         super();
     }
 
-    public Airplane(VehicleColor color, int year, int mileage, int capacity, int fuelCapacity, int fuelConsumption, int fuelLevel, double speed, boolean accelerating, boolean braking, int loadCapacity, int maxHeight, int amountOfEngines, double wingspan, boolean isFragileCargo) {
-        super(color, year, mileage, capacity, fuelCapacity, fuelConsumption, fuelLevel, speed, accelerating, braking, loadCapacity, maxHeight, amountOfEngines);
-        this.wingspan = wingspan;
+    public Airplane(int year, int mileage, VehicleColor color, int maxPassengers, boolean needsMaintenance, int maxPayload, int maxHeight, int amountOfEngines, boolean isFragileCargo, double wingspan) {
+        super(year, mileage, color, maxPassengers, needsMaintenance, maxPayload, maxHeight, amountOfEngines);
         this.isFragileCargo = isFragileCargo;
+        this.wingspan = wingspan;
     }
 
-    public Airplane(AeroVehicle other, double wingspan, boolean isFragileCargo) {
+    public Airplane(Airplane other) {
         super(other);
-        this.wingspan = wingspan;
-        this.isFragileCargo = isFragileCargo;
+        this.isFragileCargo = other.isFragileCargo;
+        this.wingspan = other.wingspan;
     }
 
-    public boolean isFragileCargo() {
+    public boolean getIsFragileCargo() {
         return isFragileCargo;
     }
 
-    public void setFragileCargo(boolean fragileCargo) {
+    public void setIsFragileCargo(boolean fragileCargo) {
         isFragileCargo = fragileCargo;
     }
 
@@ -38,6 +38,29 @@ public class Airplane extends AeroVehicle {
 
     public void setWingspan(double wingspan) {
         this.wingspan = wingspan;
+    }
+
+    @Override
+    public double getDailyRentalPrice(){
+        double basePrice = 1500.0;
+
+        if(isFragileCargo){
+            basePrice *= 1.8;
+        } else {
+            basePrice *= 1.2;
+        }
+
+        if (wingspan <= 10) {
+            basePrice *= 1.2;
+        } else if (wingspan <= 20) {
+            basePrice *= 1.5;
+        } else if (wingspan <= 30) {
+            basePrice *= 1.8;
+        } else {
+            basePrice *= 2.0;
+        }
+
+        return basePrice;
     }
 
     @Override
