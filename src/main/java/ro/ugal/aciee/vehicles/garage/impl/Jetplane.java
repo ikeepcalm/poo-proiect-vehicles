@@ -25,7 +25,7 @@ public class Jetplane extends AeroVehicle {
         this.sharpNose = other.sharpNose;
     }
 
-    public boolean isSharpNose() {
+    public boolean getSharpNose() {
         return sharpNose;
     }
 
