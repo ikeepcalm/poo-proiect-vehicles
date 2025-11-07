@@ -24,6 +24,8 @@ public class Main {
 
         fleet.addRollingVehicle(bohdanCar);
         fleet.addRollingVehicle(bohdanTruck);
+        fleet.addRollingVehicle(artemsAtv);
+        fleet.addRollingVehicle(artemsBike);
 
         System.out.println("\n==================================");
         System.out.println("          END OF PROJECT            ");
