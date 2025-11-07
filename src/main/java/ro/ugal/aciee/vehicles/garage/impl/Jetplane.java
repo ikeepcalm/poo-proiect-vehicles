@@ -13,10 +13,10 @@ public class Jetplane extends AeroVehicle {
         super();
     }
 
-    public Jetplane(VehicleColor color, int year, int mileage, int capacity, int fuelCapacity, int fuelConsumption, int fuelLevel, double speed, boolean accelerating, boolean braking, int loadCapacity, int maxHeight, int amountOfEngines, boolean sharpNose, double maxG) {
-        super(color, year, mileage, capacity, fuelCapacity, fuelConsumption, fuelLevel, speed, accelerating, braking, loadCapacity, maxHeight, amountOfEngines);
-        this.sharpNose = sharpNose;
+    public Jetplane(int year, int mileage, VehicleColor color, int maxPassengers, boolean needsMaintenance, int maxPayload, int maxHeight, int amountOfEngines, double maxG, boolean sharpNose) {
+        super(year, mileage, color, maxPassengers, needsMaintenance, maxPayload, maxHeight, amountOfEngines);
         this.maxG = maxG;
+        this.sharpNose = sharpNose;
     }
 
     public Jetplane(Jetplane other) {
@@ -39,6 +39,26 @@ public class Jetplane extends AeroVehicle {
 
     public void setMaxG(double maxG) {
         this.maxG = maxG;
+    }
+
+    @Override
+    public double getDailyRentalPrice(){
+        double basePrice = 1000.0;
+
+        if (maxHeight > 2000) {
+            basePrice += maxHeight * 0.2;
+        }
+        if (amountOfEngines > 4) {
+            basePrice += amountOfEngines * 150;
+        }
+
+        if(maxPassengers > 10){
+            basePrice += maxPassengers * 1.6;
+        } else{
+            basePrice += maxPassengers * 1.2;
+        }
+
+        return basePrice;
     }
 
     @Override
