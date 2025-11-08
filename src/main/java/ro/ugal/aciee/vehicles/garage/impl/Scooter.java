@@ -13,24 +13,26 @@ public class Scooter extends RollingVehicle {
         super();
     }
 
-    public Scooter(RollingVehicle other, boolean electric, double batteryKWh, int maxSpeedKmh) {
-        super(other);
+    public Scooter(boolean electric, double batteryKWh, int maxSpeedKmh) {
+        super();
         this.electric = electric;
         this.batteryKWh = batteryKWh;
         this.maxSpeedKmh = maxSpeedKmh;
     }
 
-    public Scooter(VehicleColor color, int year, int mileage, int capacity, int fuelCapacity, int fuelConsumption, int fuelLevel, double speed, boolean accelerating, boolean braking, int numberOfWheels, boolean isElectric, int horsePower, boolean electric) {
-        super(color, year, mileage, capacity, fuelCapacity, fuelConsumption, fuelLevel, speed, accelerating, braking, numberOfWheels, isElectric, horsePower);
+    public Scooter(int year, int mileage, VehicleColor color, int maxPassengers, boolean needsMaintenance, boolean electric, int horsePower, int maxSpeedKmh, double batteryKWh) {
+        super(year, mileage, color, maxPassengers, needsMaintenance, electric, horsePower, maxSpeedKmh);
         this.electric = electric;
-    }
-
-    public int getMaxSpeedKmh() {
-        return maxSpeedKmh;
-    }
-
-    public void setMaxSpeedKmh(int maxSpeedKmh) {
+        this.batteryKWh = batteryKWh;
         this.maxSpeedKmh = maxSpeedKmh;
+    }
+
+    public boolean isElectric() {
+        return electric;
+    }
+
+    public void setElectric(boolean electric) {
+        this.electric = electric;
     }
 
     public double getBatteryKWh() {
@@ -41,40 +43,31 @@ public class Scooter extends RollingVehicle {
         this.batteryKWh = batteryKWh;
     }
 
-    @Override
-    public boolean isElectric() {
-        return electric;
+    public int getMaxSpeedKmh() {
+        return maxSpeedKmh;
+    }
+
+    public void setMaxSpeedKmh(int maxSpeedKmh) {
+        this.maxSpeedKmh = maxSpeedKmh;
     }
 
     @Override
-    public void setElectric(boolean electric) {
-        this.electric = electric;
-    }
+    public double getDailyRentalPrice() {
+        double basePrice = 3.0;
 
-    @Override
-    public void accelerate() {
-        super.accelerate();
-        this.setSpeed(this.getSpeed() + 8);
-        if (this.electric && this.batteryKWh > 0.1) {
-            this.batteryKWh -= 0.1;
-        }
-    }
-
-    @Override public void brake() {
-            super.brake();
-            this.setSpeed(0);
-            if (this.electric && this.batteryKWh < 100) {
-                this.batteryKWh += 0.05;
-            }
+        if (this.electric) {
+            basePrice *= 0.85;
         }
 
-    @Override
-    public String toString() {
-        return "Scooter{" +
-                "electric=" + electric +
-                ", batteryKWh=" + String.format("%.2f", batteryKWh) +
-                ", maxSpeedKmh=" + maxSpeedKmh +
-                ", speed=" + getSpeed() +
-                '}';
+        if (this.batteryKWh > 2.0) {
+            basePrice *= 1.3;
+        }
+
+        basePrice *= this.horsePower / 50.0;
+
+        basePrice *= this.maxSpeedKmh / 60.0;
+
+        return basePrice;
+
     }
 }

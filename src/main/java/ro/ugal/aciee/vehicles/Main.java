@@ -3,6 +3,7 @@ package ro.ugal.aciee.vehicles;
 import ro.ugal.aciee.vehicles.garage.impl.*;
 import ro.ugal.aciee.vehicles.garage.types.AeroVehicle;
 import ro.ugal.aciee.vehicles.garage.types.NavalVehicle;
+import ro.ugal.aciee.vehicles.garage.types.RollingVehicle;
 import ro.ugal.aciee.vehicles.service.VehicleFleet;
 import ro.ugal.aciee.vehicles.garage.source.VehicleColor;
 
@@ -27,6 +28,9 @@ public class Main {
         NavalVehicle iraJetsky = new Jetsky(2019, 1000, VehicleColor.PINK, 2, false, 200, false, 1, 9);
         NavalVehicle iraYacht = new Yacht(2006, 4000, VehicleColor.WHITE, 10, true, 1500, true, true, false);
 
+        RollingVehicle sashaMotorcycle = new Motorcycle(2018, 150, VehicleColor.BLACK, 2, false, false, 200, 220, 500, true);
+        RollingVehicle sashaScooter = new Scooter(2016, 100, VehicleColor.BLUE, 2, false, true, 21, 91, 1.2);
+
         fleet.addRollingVehicle(bohdanCar);
         fleet.addRollingVehicle(bohdanTruck);
         fleet.addRollingVehicle(artemsAtv);
@@ -35,6 +39,8 @@ public class Main {
         fleet.addAerialVehicle(timJetsky);
         fleet.addNavalVehicle(iraJetsky);
         fleet.addNavalVehicle(iraYacht);
+        fleet.addRollingVehicle(sashaMotorcycle);
+        fleet.addRollingVehicle(sashaScooter);
 
 
 

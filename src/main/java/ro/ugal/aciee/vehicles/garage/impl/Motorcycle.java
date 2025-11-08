@@ -13,9 +13,18 @@ public class Motorcycle extends RollingVehicle {
         super();
     }
 
-    public Motorcycle(VehicleColor color, int year, int mileage, int capacity, int fuelCapacity, int fuelConsumption, int fuelLevel, double speed, boolean accelerating, boolean braking, int numberOfWheels, boolean isElectric, int horsePower, double engineCc) {
-        super(color, year, mileage, capacity, fuelCapacity, fuelConsumption, fuelLevel, speed, accelerating, braking, numberOfWheels, isElectric, horsePower);
+    public Motorcycle(double engineCc, boolean sportBike, int maxSpeedKmh) {
+        super();
         this.engineCc = engineCc;
+        this.sportBike = sportBike;
+        this.maxSpeedKmh = maxSpeedKmh;
+    }
+
+    public Motorcycle(int year, int mileage, VehicleColor color, int maxPassengers, boolean needsMaintenance, boolean electric, int horsePower, int maxSpeedKmh, double engineCc, boolean sportBike) {
+        super(year, mileage, color, maxPassengers, needsMaintenance, electric, horsePower, maxSpeedKmh);
+        this.engineCc = engineCc;
+        this.sportBike = sportBike;
+        this.maxSpeedKmh = maxSpeedKmh;
     }
 
     public double getEngineCc() {
@@ -24,6 +33,14 @@ public class Motorcycle extends RollingVehicle {
 
     public void setEngineCc(double engineCc) {
         this.engineCc = engineCc;
+    }
+
+    public boolean isSportBike() {
+        return sportBike;
+    }
+
+    public void setSportBike(boolean sportBike) {
+        this.sportBike = sportBike;
     }
 
     public int getMaxSpeedKmh() {
@@ -35,23 +52,21 @@ public class Motorcycle extends RollingVehicle {
     }
 
     @Override
-    public void accelerate() {
-        super.accelerate();
-        this.setSpeed(this.getSpeed() + 15);
-    }
+    public double getDailyRentalPrice() {
+        double basePrise = 5.0;
 
-    @Override
-    public void brake() {
-        super.brake();
-        this.setSpeed(0);
-    }
+        if (this.sportBike) {
+            basePrise *= 1.5;
+        }
 
-    @Override
-    public String toString() {
-        return "Motorcycle{" +
-                "engineCc=" + engineCc +
-                ", sportBike=" + sportBike +
-                ", maxSpeedKmh=" + maxSpeedKmh +
-                '}';
+        if (this.electric) {
+            basePrise *= 0.9;
+        }
+
+        basePrise *= this.horsePower / 80.0;
+
+        basePrise *= this.maxSpeedKmh / 120.0;
+
+        return basePrise;
     }
 }
