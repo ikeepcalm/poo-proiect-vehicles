@@ -4,6 +4,10 @@ import ro.ugal.aciee.vehicles.garage.Vehicle;
 import ro.ugal.aciee.vehicles.garage.source.VehicleColor;
 import ro.ugal.aciee.vehicles.garage.types.NavalVehicle;
 
+import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Yacht extends NavalVehicle {
 
     private boolean hasPool;
@@ -54,6 +58,46 @@ public class Yacht extends NavalVehicle {
         }
 
         return basePrice;
+    }
+
+    @Override
+    public List<JButton> getInteractiveActions() {
+        List<JButton> actions = new ArrayList<>();
+
+        JButton poolButton = new JButton(hasPool ? "Disable pool" : "Enable pool");
+        poolButton.addActionListener(e -> {
+            hasPool = !hasPool;
+            poolButton.setText(hasPool ? "Disable pool" : "Enable pool");
+            JOptionPane.showMessageDialog(null,
+                    "Yacht is now has pool: " + (hasPool? "ENABLE" : "DISABLE"),
+                    "Yacht Status Updated",
+                    JOptionPane.INFORMATION_MESSAGE);
+        });
+        actions.add(poolButton);
+
+        JButton infoButton = new JButton("Yacht Info");
+        infoButton.addActionListener(e -> {
+            String info =String.format(
+                    "Yacht Details:\n"+
+                            "Max payload: %dkg\n"+
+                            "Can operate in storm: %s\n"+
+                            "Has pool: %s\n"+
+                            "Sails raised: %s\n"+
+                            "Daily Price: $%.2f",
+                    maxPayload,
+                    canOperateInStorm  ? "Yes" : "No",
+                    hasPool ? "Yes" : "No",
+                    sailsRaised ? "Yes" : "No" ,
+                    getDailyRentalPrice()
+            );
+            JOptionPane.showMessageDialog(null,
+                    info,
+                    "Yacht Information",
+                    JOptionPane.INFORMATION_MESSAGE);
+        });
+        actions.add(infoButton);
+
+        return actions;
     }
 
     @Override
