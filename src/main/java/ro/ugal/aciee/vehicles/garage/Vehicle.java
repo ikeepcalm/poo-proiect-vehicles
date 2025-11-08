@@ -2,6 +2,9 @@ package ro.ugal.aciee.vehicles.garage;
 
 import ro.ugal.aciee.vehicles.garage.source.VehicleColor;
 
+import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public abstract class Vehicle implements Rentable {
@@ -138,6 +141,40 @@ public abstract class Vehicle implements Rentable {
 
     public void setNeedsMaintenance(boolean needsMaintenance) {
         this.needsMaintenance = needsMaintenance;
+    }
+
+    public List<JButton> getInteractiveActions() {
+        List<JButton> actions = new ArrayList<>();
+
+        JButton infoButton = new JButton("Vehicle Info");
+        infoButton.addActionListener(e -> {
+            String info = String.format(
+                    "Vehicle Information:\n\n" +
+                    "ID: %s\n" +
+                    "Year: %d\n" +
+                    "Mileage: %d km\n" +
+                    "Color: %s\n" +
+                    "Max Passengers: %d\n" +
+                    "Status: %s\n" +
+                    "Needs Maintenance: %s\n" +
+                    "Daily Rental Price: $%.2f",
+                    id.toString().substring(0, 8) + "...",
+                    year,
+                    mileage,
+                    color,
+                    maxPassengers,
+                    isRented ? "Rented to " + currentRenterName : "Available",
+                    needsMaintenance ? "Yes" : "No",
+                    getDailyRentalPrice()
+            );
+            JOptionPane.showMessageDialog(null,
+                    info,
+                    "Vehicle Details",
+                    JOptionPane.INFORMATION_MESSAGE);
+        });
+        actions.add(infoButton);
+
+        return actions;
     }
 
     @Override

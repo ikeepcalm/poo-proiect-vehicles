@@ -6,13 +6,14 @@ import ro.ugal.aciee.vehicles.garage.types.NavalVehicle;
 import ro.ugal.aciee.vehicles.garage.types.RollingVehicle;
 import ro.ugal.aciee.vehicles.service.VehicleFleet;
 import ro.ugal.aciee.vehicles.garage.source.VehicleColor;
+import ro.ugal.aciee.vehicles.gui.VehicleRentalGUI;
 
 public class Main {
 
     public static void main(String[] args) {
         System.out.println("====================================");
         System.out.println("   VEHICLE RENTAL SYSTEM   ");
-        System.out.println("====================================\n");
+        System.out.println("====================================\n\n");
 
         VehicleFleet fleet = new VehicleFleet();
 
@@ -42,10 +43,15 @@ public class Main {
         fleet.addRollingVehicle(sashaMotorcycle);
         fleet.addRollingVehicle(sashaScooter);
 
+        System.out.println("Fleet loaded with " + fleet.getTotalVehicleCount() + " vehicles.");
+        System.out.println("Launching GUI...\n");
 
+        VehicleRentalGUI gui = new VehicleRentalGUI(fleet);
+
+        gui.launch();
 
         System.out.println("\n==================================");
-        System.out.println("          END OF PROJECT            ");
+        System.out.println("          GUI LAUNCHED            ");
         System.out.println("====================================");
     }
 
