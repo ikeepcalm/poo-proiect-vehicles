@@ -13,16 +13,16 @@ public class Jetsky extends NavalVehicle {
         super();
     }
 
-    public Jetsky(Vehicle other, int buoyancyInKg, int amountOfPilots, double loudness) {
-        super(other, buoyancyInKg);
+    public Jetsky(int year, int mileage, VehicleColor color, int maxPassengers, boolean needsMaintenance, int maxPayload, boolean canOperateInStorm, int amountOfPilots, double loudness) {
+        super(year, mileage, color, maxPassengers, needsMaintenance, maxPayload, canOperateInStorm);
         this.amountOfPilots = amountOfPilots;
         this.loudness = loudness;
     }
 
-    public Jetsky(VehicleColor color, int year, int mileage, int capacity, int fuelCapacity, int fuelConsumption, int fuelLevel, double speed, boolean accelerating, boolean braking, int buoyancyInKg, int amountOfPilots, double loudness) {
-        super(color, year, mileage, capacity, fuelCapacity, fuelConsumption, fuelLevel, speed, accelerating, braking, buoyancyInKg);
-        this.amountOfPilots = amountOfPilots;
-        this.loudness = loudness;
+    public Jetsky(Jetsky other) {
+        super(other);
+        this.amountOfPilots = other.amountOfPilots;
+        this.loudness = other.loudness;
     }
 
     public int getAmountOfPilots() {
@@ -40,6 +40,26 @@ public class Jetsky extends NavalVehicle {
     public void setLoudness(double loudness) {
         this.loudness = loudness;
     }
+
+    @Override
+    public double getDailyRentalPrice(){
+        double basePrice = 200.0;
+
+        if(amountOfPilots > 1){
+            basePrice *= amountOfPilots * 1.7;
+        } else{
+            basePrice *= amountOfPilots * 1.2;
+        }
+
+        if(maxPayload < 120){
+            basePrice *= 1.2;
+        } else{
+            basePrice *= 1.6;
+        }
+
+        return basePrice;
+    }
+
 
     @Override
     public String toString() {

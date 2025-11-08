@@ -13,16 +13,16 @@ public class Yacht extends NavalVehicle {
         super();
     }
 
-    public Yacht(VehicleColor color, int year, int mileage, int capacity, int fuelCapacity, int fuelConsumption, int fuelLevel, double speed, boolean accelerating, boolean braking, int buoyancyInKg, boolean hasPool, boolean sailsRaised) {
-        super(color, year, mileage, capacity, fuelCapacity, fuelConsumption, fuelLevel, speed, accelerating, braking, buoyancyInKg);
+    public Yacht(int year, int mileage, VehicleColor color, int maxPassengers, boolean needsMaintenance, int maxPayload, boolean canOperateInStorm, boolean hasPool, boolean sailsRaised) {
+        super(year, mileage, color, maxPassengers, needsMaintenance, maxPayload, canOperateInStorm);
         this.hasPool = hasPool;
         this.sailsRaised = sailsRaised;
     }
 
-    public Yacht(Vehicle other, int buoyancyInKg, boolean hasPool, boolean sailsRaised) {
-        super(other, buoyancyInKg);
-        this.hasPool = hasPool;
-        this.sailsRaised = sailsRaised;
+    public Yacht(Yacht other) {
+        super(other);
+        this.hasPool = other.hasPool;
+        this.sailsRaised = other.sailsRaised;
     }
 
     public boolean getIsHasPool() {
@@ -39,6 +39,21 @@ public class Yacht extends NavalVehicle {
 
     public void setSailsRaised(boolean sailsRaised) {
         this.sailsRaised = sailsRaised;
+    }
+
+    @Override
+    public double getDailyRentalPrice(){
+        double basePrice = 500.0;
+
+        if(hasPool){
+            basePrice *= 1.3;
+        }
+
+        if(canOperateInStorm){
+            basePrice *= 2;
+        }
+
+        return basePrice;
     }
 
     @Override
