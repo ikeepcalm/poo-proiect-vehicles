@@ -3,6 +3,10 @@ package ro.ugal.aciee.vehicles.garage.impl;
 import ro.ugal.aciee.vehicles.garage.source.VehicleColor;
 import ro.ugal.aciee.vehicles.garage.types.RollingVehicle;
 
+import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
+
 public class ElectricBike extends RollingVehicle {
 
     private int range;
@@ -21,6 +25,7 @@ public class ElectricBike extends RollingVehicle {
         super(year, mileage, color, maxPassengers, needsMaintenance, electric, horsePower, maxSpeedKmh);
         this.range = range;
         this.address = address;
+
     }
 
     public int getRange() {
@@ -40,10 +45,12 @@ public class ElectricBike extends RollingVehicle {
     }
 
 
+
+
     @Override
     public double getDailyRentalPrice() {
         double DefaulPrice = 20;
-        if (this.range == 100) {
+        if (this.range > 500) {
             DefaulPrice *= 0.5;
         }
         if (this.color == VehicleColor.PINK) {
@@ -53,4 +60,84 @@ public class ElectricBike extends RollingVehicle {
 
     }
 
+    public List<JButton> getInteractiveActions() {
+        List<JButton> actions = new ArrayList<>();
+
+        JButton rangeButton = new JButton(" increase range ");
+        rangeButton.addActionListener(e -> {
+        if (range < 2000) {
+            range += 100;
+            JOptionPane.showMessageDialog(
+                    null,
+                    String.format(" Range has been increasesd", range),
+                    " increase range ",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+        } else {
+            JOptionPane.showMessageDialog(
+                    null,
+                    " Max range ",
+                    " Warning ",
+                    JOptionPane.WARNING_MESSAGE
+            );
+        }
+        });
+        actions.add(rangeButton);
+
+        JButton reducerangeButton = new JButton(" Reduce range ");
+        reducerangeButton.addActionListener(e -> {
+            if (range > 100) {
+                range -= 100;
+                JOptionPane.showMessageDialog(
+                        null,
+                        String.format(" Range has been reducedd", range),
+                        " Reduce range ",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+            } else {
+                JOptionPane.showMessageDialog(
+                        null,
+                        " Minimal range ",
+                        " Warning ",
+                        JOptionPane.WARNING_MESSAGE
+                );
+            }
+        });
+        actions.add(reducerangeButton);
+
+
+        actions.add(reducerangeButton);
+        JButton infoButton = new JButton("Bike info");
+        infoButton.addActionListener(e -> {
+            String info = String.format(
+                    "Bike Info:\n" +
+                            "Type: %s Bike\n" +
+                            "Horsepower: %d HP\n" +
+                            "Max Speed: %d km/h\n" +
+                            "Range: %d\n" +
+                            "Daily Price: $%.2f",
+                    electric ? "Electric" : "Gasoline",
+                    horsePower,
+                    maxSpeedKmh,
+                    range,
+                    getDailyRentalPrice()
+            );
+            JOptionPane.showMessageDialog(null,
+                    info,
+                    "Bike Information",
+                    JOptionPane.INFORMATION_MESSAGE);
+        });
+        actions.add(infoButton);
+
+        return actions;
+    }
+
 }
+
+
+
+
+
+
+
+
