@@ -66,7 +66,7 @@ public class Atv extends RollingVehicle {
             spareWheel = !spareWheel;
             wheelButton.setText(spareWheel ? " Remove spare wheel " : " Add spare wheel ");
             JOptionPane.showMessageDialog(null,
-                    " Spare wheel is  " + (spareWheel ? "Added" : "Removed"),
+                    " Spare wheel has been " + (spareWheel ? "Added" : "Removed"),
                     " Wheel Updated",
                     JOptionPane.INFORMATION_MESSAGE);
         });
