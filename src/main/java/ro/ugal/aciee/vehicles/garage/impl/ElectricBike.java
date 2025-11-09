@@ -132,6 +132,13 @@ public class ElectricBike extends RollingVehicle {
         return actions;
     }
 
+    @Override
+    public String toString() {
+        return "ElectricBike{" +
+                "range=" + range +
+                ", address='" + address + '\'' +
+                '}';
+    }
 }
 
 
