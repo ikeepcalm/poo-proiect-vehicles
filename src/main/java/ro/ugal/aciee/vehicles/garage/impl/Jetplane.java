@@ -160,8 +160,8 @@ public class Jetplane extends AeroVehicle {
     @Override
     public String toString() {
         return "Jetplane{" +
-               "maxJ=" + maxG +
-               ", isNoseSharp=" + sharpNose +
+               "maxG=" + maxG +
+               ", sharpNose=" + sharpNose +
                '}';
     }
 }
