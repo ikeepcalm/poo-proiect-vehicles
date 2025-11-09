@@ -3,6 +3,10 @@ package ro.ugal.aciee.vehicles.garage.impl;
 import ro.ugal.aciee.vehicles.garage.source.VehicleColor;
 import ro.ugal.aciee.vehicles.garage.types.RollingVehicle;
 
+import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Motorcycle extends RollingVehicle {
 
     private double engineCc;
@@ -68,5 +72,64 @@ public class Motorcycle extends RollingVehicle {
         basePrise *= this.maxSpeedKmh / 120.0;
 
         return basePrise;
+    }
+
+    @Override
+    public List<JButton> getInteractiveActions() {
+        List<JButton> actions = new ArrayList<>();
+
+        JButton sportModeButton = new JButton(sportBike ? "Disable Sport Mode" : "Enable Sport Mode");
+        sportModeButton.addActionListener(e -> {
+            sportBike = !sportBike;
+            sportModeButton.setText(sportBike ? "Disable Sport Mode" : "Enable Sport Mode");
+            JOptionPane.showMessageDialog(null,
+                    "Sport mode is now " + (sportBike ? "ENABLED!" : "DISABLED!"),
+                    "Sport Mode",
+                    JOptionPane.INFORMATION_MESSAGE);
+        });
+        actions.add(sportModeButton);
+
+        JButton speedBoostButton = new JButton("Increase Max Speed");
+        speedBoostButton.addActionListener(e -> {
+            if (maxSpeedKmh < 400) {
+                maxSpeedKmh += 20;
+                JOptionPane.showMessageDialog(null,
+                        "Max speed increased to " + maxSpeedKmh + "km/h",
+                        "Speed Update",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "Maximum speed reached!",
+                        "Warning",
+                        JOptionPane.WARNING_MESSAGE);
+            }
+        });
+        actions.add(speedBoostButton);
+
+        JButton infoButton = new JButton("Motorcycle Info");
+        infoButton.addActionListener(e -> {
+            String info = String.format(
+                    "Motorcycle Info:\n" +
+                            "Type: %s Motorcycle\n" +
+                            "Horsepower: %d HP\n" +
+                            "Max Speed: %d km/h\n" +
+                            "Engine: %.1f cc\n" +
+                            "Sport Mode: %s\n" +
+                            "Daily Price: $%.2f",
+                    electric ? "Electric" : "Gasoline",
+                    horsePower,
+                    maxSpeedKmh,
+                    engineCc,
+                    sportBike ? "ON" : "OFF",
+                    getDailyRentalPrice()
+            );
+            JOptionPane.showMessageDialog(null,
+                    info,
+                    "Motorcycle Information",
+                    JOptionPane.INFORMATION_MESSAGE);
+        });
+        actions.add(infoButton);
+
+        return actions;
     }
 }

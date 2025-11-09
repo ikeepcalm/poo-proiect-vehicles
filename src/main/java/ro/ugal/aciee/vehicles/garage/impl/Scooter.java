@@ -3,6 +3,10 @@ package ro.ugal.aciee.vehicles.garage.impl;
 import ro.ugal.aciee.vehicles.garage.source.VehicleColor;
 import ro.ugal.aciee.vehicles.garage.types.RollingVehicle;
 
+import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Scooter extends RollingVehicle {
 
     private boolean electric;
@@ -69,5 +73,68 @@ public class Scooter extends RollingVehicle {
 
         return basePrice;
 
+    }
+
+    @Override
+    public List<JButton> getInteractiveActions() {
+        List<JButton> actions = new ArrayList<>();
+
+        JButton chargeButton = new JButton("Charge Battery");
+        chargeButton.addActionListener(e -> {
+            if (batteryKWh < 5.0) {
+                batteryKWh += 0.5;
+                JOptionPane.showMessageDialog(null,
+                        String.format("Battery charged! Current level: %.1f kWh", batteryKWh),
+                        "Battery Status",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "Battery is fully charged!",
+                        "Warning",
+                        JOptionPane.WARNING_MESSAGE);
+            }
+        });
+        actions.add(chargeButton);
+
+        JButton dischargeButton = new JButton("Use Battery");
+        dischargeButton.addActionListener(e -> {
+            if (batteryKWh > 0.5) {
+                batteryKWh -= 0.5;
+                JOptionPane.showMessageDialog(null,
+                        String.format("Battery used! Current level: %.1f kWh", batteryKWh),
+                        "Battery Status",
+                        JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "Battery too low!",
+                        "Warning",
+                        JOptionPane.WARNING_MESSAGE);
+            }
+        });
+        actions.add(dischargeButton);
+
+        JButton infoButton = new JButton("Scooter Info");
+        infoButton.addActionListener(e -> {
+            String info = String.format(
+                    "Scooter Info:\n" +
+                            "Type: %s Scooter\n" +
+                            "Horsepower: %d HP\n" +
+                            "Max Speed: %d km/h\n" +
+                            "Battery: %.1f kWh\n" +
+                            "Daily Price: $%.2f",
+                    electric ? "Electric" : "Gasoline",
+                    horsePower,
+                    maxSpeedKmh,
+                    batteryKWh,
+                    getDailyRentalPrice()
+            );
+            JOptionPane.showMessageDialog(null,
+                    info,
+                    "Scooter Information",
+                    JOptionPane.INFORMATION_MESSAGE);
+        });
+        actions.add(infoButton);
+
+        return actions;
     }
 }
