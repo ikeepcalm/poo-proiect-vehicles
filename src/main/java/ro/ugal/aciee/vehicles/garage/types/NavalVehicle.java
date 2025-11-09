@@ -36,7 +36,7 @@ public abstract class NavalVehicle extends Vehicle {
         this.maxPayload = maxPayload;
     }
 
-    public boolean isCanOperateInStorm() {
+    public boolean getIsCanOperateInStorm() {
         return canOperateInStorm;
     }
 

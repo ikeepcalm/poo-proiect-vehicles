@@ -72,7 +72,6 @@ public class Jetsky extends NavalVehicle {
         pilotsPlusButton.addActionListener(e -> {
             if(amountOfPilots <= 1){
                 ++amountOfPilots;
-                getDailyRentalPrice() ;
                 JOptionPane.showMessageDialog(
                         null,
                         String.format("Number of pilots: %d", amountOfPilots),
@@ -135,8 +134,6 @@ public class Jetsky extends NavalVehicle {
 
         return actions;
     }
-
-
 
     @Override
     public String toString() {
