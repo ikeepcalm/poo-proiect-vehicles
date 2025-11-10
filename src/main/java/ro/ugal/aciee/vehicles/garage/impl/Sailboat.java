@@ -1,6 +1,5 @@
 package ro.ugal.aciee.vehicles.garage.impl;
 
-import ro.ugal.aciee.vehicles.garage.Vehicle;
 import ro.ugal.aciee.vehicles.garage.source.VehicleColor;
 import ro.ugal.aciee.vehicles.garage.types.NavalVehicle;
 
@@ -11,23 +10,24 @@ import java.util.List;
 public class Sailboat extends NavalVehicle {
 
     private boolean sailsRaised;
-    private boolean rudderLocked;
+    private boolean hasRudder;
 
     public Sailboat() {
         super();
     }
 
-    public Sailboat(boolean sailsRaised, boolean rudderLocked) {
-        super();
+    public Sailboat(int year, int mileage, VehicleColor color, int maxPassengers,
+                    boolean needsMaintenance, int maxPayload, boolean canOperateInStorm,
+                    boolean sailsRaised, boolean hasRudder) {
+        super(year, mileage, color, maxPassengers, needsMaintenance, maxPayload, canOperateInStorm);
         this.sailsRaised = sailsRaised;
-        this.rudderLocked = rudderLocked;
+        this.hasRudder = hasRudder;
     }
 
-    public Sailboat(int year, int mileage, VehicleColor color, int maxPassengers, boolean needsMaintenance,
-                    boolean electric, int horsePower, int maxSpeedKmh, boolean sailsRaised, boolean rudderLocked) {
-        super(year, mileage, color, maxPassengers, needsMaintenance, electric, horsePower, maxSpeedKmh);
-        this.sailsRaised = sailsRaised;
-        this.rudderLocked = rudderLocked;
+    public Sailboat(Sailboat other) {
+        super(other);
+        this.sailsRaised = other.sailsRaised;
+        this.hasRudder = other.hasRudder;
     }
 
     public boolean isSailsRaised() {
@@ -38,28 +38,29 @@ public class Sailboat extends NavalVehicle {
         this.sailsRaised = sailsRaised;
     }
 
-    public boolean isRudderLocked() {
-        return rudderLocked;
+    public boolean isHasRudder() {
+        return hasRudder;
     }
 
-    public void setRudderLocked(boolean rudderLocked) {
-        this.rudderLocked = rudderLocked;
+    public void setHasRudder(boolean hasRudder) {
+        this.hasRudder = hasRudder;
     }
 
     @Override
     public double getDailyRentalPrice() {
-        double basePrice = 25.0;
+        double basePrice = 150.0;
 
         if (sailsRaised) {
-            basePrice *= 1.2;
+            basePrice *= 1.3;
         }
 
-        if (electric) {
-            basePrice *= 0.9;
+        if (canOperateInStorm) {
+            basePrice *= 1.4;
         }
 
-        basePrice *= this.horsePower / 70.0;
-        basePrice *= this.maxSpeedKmh / 60.0;
+        if (!hasRudder) {
+            basePrice *= 0.8;
+        }
 
         return basePrice;
     }
@@ -73,19 +74,19 @@ public class Sailboat extends NavalVehicle {
             sailsRaised = !sailsRaised;
             sailsButton.setText(sailsRaised ? "Lower Sails" : "Raise Sails");
             JOptionPane.showMessageDialog(null,
-                    "Sails are now " + (sailsRaised ? "RAISED" : "LOWERED") + ".",
-                    "Sails Status",
+                    "Sails are now " + (sailsRaised ? "RAISED" : "LOWERED"),
+                    "Sailboat Update",
                     JOptionPane.INFORMATION_MESSAGE);
         });
         actions.add(sailsButton);
 
-        JButton rudderButton = new JButton(rudderLocked ? "Unlock Rudder" : "Lock Rudder");
+        JButton rudderButton = new JButton(hasRudder ? "Remove Rudder" : "Attach Rudder");
         rudderButton.addActionListener(e -> {
-            rudderLocked = !rudderLocked;
-            rudderButton.setText(rudderLocked ? "Unlock Rudder" : "Lock Rudder");
+            hasRudder = !hasRudder;
+            rudderButton.setText(hasRudder ? "Remove Rudder" : "Attach Rudder");
             JOptionPane.showMessageDialog(null,
-                    "Rudder is now " + (rudderLocked ? "LOCKED" : "UNLOCKED") + ".",
-                    "Rudder Status",
+                    "Rudder is now " + (hasRudder ? "ATTACHED" : "REMOVED"),
+                    "Sailboat Update",
                     JOptionPane.INFORMATION_MESSAGE);
         });
         actions.add(rudderButton);
@@ -93,18 +94,12 @@ public class Sailboat extends NavalVehicle {
         JButton infoButton = new JButton("Sailboat Info");
         infoButton.addActionListener(e -> {
             String info = String.format(
-                    "Sailboat Details:\n" +
-                            "Type: %s Sailboat\n" +
-                            "Horsepower: %d HP\n" +
-                            "Max Speed: %d km/h\n" +
-                            "Sails: %s\n" +
-                            "Rudder: %s\n" +
-                            "Daily Price: $%.2f",
-                    electric ? "Electric" : "Wind-assisted",
-                    horsePower,
-                    maxSpeedKmh,
-                    sailsRaised ? "Raised" : "Lowered",
-                    rudderLocked ? "Locked" : "Unlocked",
+                    "Sailboat Details:\nYear: %d\nMileage: %d\nColor: %s\nPassengers: %d\n" +
+                    "Can operate in storm: %s\nSails raised: %s\nHas rudder: %s\nDaily Price: $%.2f",
+                    year, mileage, color, maxPassengers,
+                    canOperateInStorm ? "Yes" : "No",
+                    sailsRaised ? "Yes" : "No",
+                    hasRudder ? "Yes" : "No",
                     getDailyRentalPrice()
             );
             JOptionPane.showMessageDialog(null, info, "Sailboat Information", JOptionPane.INFORMATION_MESSAGE);
@@ -118,7 +113,7 @@ public class Sailboat extends NavalVehicle {
     public String toString() {
         return "Sailboat{" +
                 "sailsRaised=" + sailsRaised +
-                ", rudderLocked=" + rudderLocked +
+                ", hasRudder=" + hasRudder +
                 '}';
     }
 }
