@@ -71,13 +71,6 @@ public class Truck extends RollingVehicle {
     }
 
     @Override
-    public String toString() {
-        return "Truck{" +
-               "isTrailerAttached=" + isTrailerAttached +
-               '}';
-    }
-
-    @Override
     public double getDailyRentalPrice() {
         double basePrice = 15.0;
 
@@ -92,5 +85,12 @@ public class Truck extends RollingVehicle {
         basePrice *= this.horsePower / 50.0;
 
         return basePrice;
+    }
+
+    @Override
+    public String toString() {
+        return "Truck{" +
+               "isTrailerAttached=" + isTrailerAttached +
+               '}';
     }
 }
