@@ -6,6 +6,7 @@ import ro.ugal.aciee.vehicles.garage.types.AeroVehicle;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 
 public class Jetplane extends AeroVehicle {
@@ -17,6 +18,37 @@ public class Jetplane extends AeroVehicle {
 
     public Jetplane() {
         super();
+    }
+
+    public Jetplane(boolean random) {
+        this();
+
+        if (!random) {
+            return;
+        }
+
+        Random rand = new Random();
+
+        this.year = rand.nextInt(240) + 1800;
+        this.mileage = rand.nextInt(3000) + 1500;
+        int index = rand.nextInt(VehicleColor.values().length);
+        this.color = VehicleColor.values()[index];
+        this.maxPassengers = rand.nextInt(10) + 5;
+        this.needsMaintenance = rand.nextBoolean();
+        this.maxPayload =  rand.nextInt(1000) + 2000;
+        this.maxHeight = rand.nextInt(3000) + 6000;
+        boolean foundEvenEngineCount = true;
+        while(foundEvenEngineCount) {
+            int engineCountCandidate = rand.nextInt(6) + 2;
+            if (engineCountCandidate % 2 == 0) {
+                this.amountOfEngines = engineCountCandidate;
+                foundEvenEngineCount = false;
+            }
+        }
+        this.maxG = rand.nextDouble(3.0) + 5.0;
+        this.sharpNose = rand.nextBoolean();
+        this.maxBoost = this.maxG + 2;
+        this.maxReduce = this.maxG - 2;
     }
 
     public Jetplane(int year, int mileage, VehicleColor color, int maxPassengers, boolean needsMaintenance, int maxPayload, int maxHeight, int amountOfEngines, double maxG, boolean sharpNose) {

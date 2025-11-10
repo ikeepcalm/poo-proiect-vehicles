@@ -6,6 +6,7 @@ import ro.ugal.aciee.vehicles.garage.types.AeroVehicle;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Airplane extends AeroVehicle {
 
@@ -15,6 +16,36 @@ public class Airplane extends AeroVehicle {
 
     public Airplane() {
         super();
+    }
+
+    public Airplane(boolean random) {
+        this();
+
+        if (!random) {
+            return;
+        }
+
+        Random rand = new Random();
+
+        this.year = rand.nextInt(240) + 1800;
+        this.mileage = rand.nextInt(3000) + 1500;
+        int index = rand.nextInt(VehicleColor.values().length);
+        this.color = VehicleColor.values()[index];
+        this.maxPassengers = rand.nextInt(100) + 60;
+        this.needsMaintenance = rand.nextBoolean();
+        this.maxPayload =  rand.nextInt(1000) + 2000;
+        this.maxHeight = rand.nextInt(3000) + 6000;
+        boolean foundEvenEngineCount = true;
+        while(foundEvenEngineCount) {
+            int engineCountCandidate = rand.nextInt(6) + 2;
+            if (engineCountCandidate % 2 == 0) {
+                this.amountOfEngines = engineCountCandidate;
+                foundEvenEngineCount = false;
+            }
+        }
+        this.isFragileCargo = rand.nextBoolean();
+        this.wingspan = rand.nextDouble(20.0) + 10.0;
+        this.openWingspan = rand.nextBoolean();
     }
 
     public Airplane(int year, int mileage, VehicleColor color, int maxPassengers, boolean needsMaintenance, int maxPayload, int maxHeight, int amountOfEngines, boolean isFragileCargo, double wingspan) {
@@ -27,6 +58,7 @@ public class Airplane extends AeroVehicle {
         super(other);
         this.isFragileCargo = other.isFragileCargo;
         this.wingspan = other.wingspan;
+        this.openWingspan = other.openWingspan;
     }
 
     public boolean getIsFragileCargo() {
