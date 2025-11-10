@@ -29,6 +29,12 @@ public class Car extends RollingVehicle {
         this.isStorageFull = isStorageFull;
     }
 
+    public Car(Car other) {
+        super(other);
+        this.isRadioOn = other.isRadioOn;
+        this.isStorageFull = other.isStorageFull;
+    }
+
     public boolean isRadioOn() {
         return isRadioOn;
     }
@@ -120,11 +126,4 @@ public class Car extends RollingVehicle {
         return actions;
     }
 
-    @Override
-    public String toString() {
-        return "Car{" +
-               "isRadioOn=" + isRadioOn +
-               ", isStorageFull=" + isStorageFull +
-               '}';
-    }
 }

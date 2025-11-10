@@ -24,6 +24,11 @@ public class Truck extends RollingVehicle {
         this.isTrailerAttached = isTrailerAttached;
     }
 
+    public Truck(Truck other) {
+        super(other);
+        this.isTrailerAttached = other.isTrailerAttached;
+    }
+
     public boolean isTrailerAttached() {
         return isTrailerAttached;
     }
