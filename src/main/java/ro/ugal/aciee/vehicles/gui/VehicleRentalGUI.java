@@ -2,12 +2,14 @@ package ro.ugal.aciee.vehicles.gui;
 
 import ro.ugal.aciee.vehicles.garage.Vehicle;
 import ro.ugal.aciee.vehicles.garage.source.VehicleColor;
+
 import ro.ugal.aciee.vehicles.service.VehicleFleet;
 
 import javax.swing.*;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.util.List;
+
 
 public class VehicleRentalGUI extends JFrame {
 
@@ -252,14 +254,23 @@ public class VehicleRentalGUI extends JFrame {
         clearButton.setPreferredSize(new Dimension(120, 35));
         clearButton.addActionListener(e -> clearAll());
 
+        JButton generateButton = new JButton("Generate new vehicle");
+        clearButton.setPreferredSize(new Dimension(150, 50));
+        clearButton.addActionListener(e -> generatenew());
+
         southPanel.add(rentButton);
         southPanel.add(returnButton);
         southPanel.add(maintenanceButton);
         southPanel.add(refreshButton);
         southPanel.add(clearButton);
+        southPanel.add(generateButton);
 
         add(southPanel, BorderLayout.SOUTH);
     }
+
+    private void generatenew() {
+    }
+
 
     private void clearAll() {
         tableModel.setVehicles(List.of());
