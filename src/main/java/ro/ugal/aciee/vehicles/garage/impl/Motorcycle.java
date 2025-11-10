@@ -31,6 +31,13 @@ public class Motorcycle extends RollingVehicle {
         this.maxSpeedKmh = maxSpeedKmh;
     }
 
+    public Motorcycle (Motorcycle other) {
+        super(other);
+        this.engineCc = other.engineCc;
+        this.sportBike = other.sportBike;
+        this.maxSpeedKmh = other.maxSpeedKmh;
+    }
+
     public double getEngineCc() {
         return engineCc;
     }

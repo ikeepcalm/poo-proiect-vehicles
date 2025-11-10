@@ -31,6 +31,13 @@ public class Scooter extends RollingVehicle {
         this.maxSpeedKmh = maxSpeedKmh;
     }
 
+    public Scooter (Scooter other) {
+        super(other);
+        this.electric = other.electric;
+        this.batteryKWh = other.batteryKWh;
+        this.maxSpeedKmh = other.maxSpeedKmh;
+    }
+
     public boolean isElectric() {
         return electric;
     }
