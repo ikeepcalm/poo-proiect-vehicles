@@ -6,6 +6,7 @@ import ro.ugal.aciee.vehicles.garage.types.NavalVehicle;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Jetsky extends NavalVehicle {
 
@@ -14,6 +15,27 @@ public class Jetsky extends NavalVehicle {
 
     public Jetsky() {
         super();
+    }
+
+    public Jetsky(boolean random){
+        this();
+
+        if(!random){
+            return;
+        }
+
+        Random rand = new Random();
+
+        this.year = rand.nextInt(240) + 1800;
+        this.mileage = rand.nextInt(1500) + 2500;
+        int index = rand.nextInt(VehicleColor.values().length);
+        this.color = VehicleColor.values()[index];
+        this.maxPassengers = rand.nextInt(10) + 4;
+        this.needsMaintenance = rand.nextBoolean();
+        this.maxPayload =  rand.nextInt(2000) + 2000;
+        this.canOperateInStorm = rand.nextBoolean();
+        this.amountOfPilots = rand.nextInt(3) + 1;
+        this.loudness = rand.nextDouble(3.0) + 5.0;
     }
 
     public Jetsky(int year, int mileage, VehicleColor color, int maxPassengers, boolean needsMaintenance, int maxPayload, boolean canOperateInStorm, int amountOfPilots, double loudness) {

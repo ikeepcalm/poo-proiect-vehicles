@@ -6,6 +6,7 @@ import ro.ugal.aciee.vehicles.garage.types.NavalVehicle;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Sailboat extends NavalVehicle {
 
@@ -14,6 +15,27 @@ public class Sailboat extends NavalVehicle {
 
     public Sailboat() {
         super();
+    }
+
+    public Sailboat(boolean random){
+        this();
+
+        if(!random){
+            return;
+        }
+
+        Random rand = new Random();
+
+        this.year = rand.nextInt(250) + 1700;
+        this.mileage = rand.nextInt(1500) + 2500;
+        int index = rand.nextInt(VehicleColor.values().length);
+        this.color = VehicleColor.values()[index];
+        this.maxPassengers = rand.nextInt(8) + 4;
+        this.needsMaintenance = rand.nextBoolean();
+        this.maxPayload =  rand.nextInt(125) + 300;
+        this.canOperateInStorm = rand.nextBoolean();
+        this.hasRudder = rand.nextBoolean();
+        this.sailsRaised = rand.nextBoolean();
     }
 
     public Sailboat(int year, int mileage, VehicleColor color, int maxPassengers,

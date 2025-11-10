@@ -8,8 +8,6 @@ import ro.ugal.aciee.vehicles.garage.types.RollingVehicle;
 import ro.ugal.aciee.vehicles.gui.VehicleRentalGUI;
 import ro.ugal.aciee.vehicles.service.VehicleFleet;
 
-import java.util.Random;
-
 public class Main {
 
     public static void main(String[] args) {
@@ -37,7 +35,6 @@ public class Main {
         RollingVehicle sashaMotorcycle = new Motorcycle(2018, 150, VehicleColor.BLACK, 2, false, false, 200, 220, 500, true);
         RollingVehicle sashaScooter = new Scooter(2016, 100, VehicleColor.BLUE, 2, false, true, 21, 91, 1.2);
 
-
         fleet.addRollingVehicle(bohdanCar);
         fleet.addRollingVehicle(bohdanTruck);
         fleet.addRollingVehicle(artemsAtv);
@@ -50,21 +47,6 @@ public class Main {
         fleet.addNavalVehicle(alexSailboat);
         fleet.addRollingVehicle(sashaMotorcycle);
         fleet.addRollingVehicle(sashaScooter);
-
-        Random rand = new Random();
-        for (int i = 0; i < 15; i++) {
-            switch (rand.nextInt(2)) {
-                case 0 -> {
-                    AeroVehicle airplane = new Airplane(true);
-                    fleet.addAerialVehicle(airplane);
-                }
-                case 1 -> {
-                    AeroVehicle jetplane = new Jetplane(true);
-                    fleet.addAerialVehicle(jetplane);
-                }
-            }
-        }
-
 
         System.out.println("Fleet loaded with " + fleet.getTotalVehicleCount() + " vehicles.");
         System.out.println("Launching GUI...\n");

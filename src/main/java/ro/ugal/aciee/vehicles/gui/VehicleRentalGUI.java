@@ -55,9 +55,12 @@ public class VehicleRentalGUI extends JFrame {
     private void createMenuBar() {
         JMenuBar menuBar = new JMenuBar();
         JMenu loadSaveVehicles = new JMenu("Load & Save Vehicles");
+        JMenu randomVehicles = new JMenu("Random Vehicles");
         JMenuItem saveMenuItem = new JMenuItem("Save");
         JMenuItem loadMenuItem = new JMenuItem("Load");
         JMenuItem exitMenuItem = new JMenuItem("Exit");
+        JMenuItem randomAeroVehicleMenuItem = new JMenuItem("Random AeroVehicle");
+        JMenuItem randomNavalVehicleMenuItem = new JMenuItem("Random NavalVehicle");
 
         saveMenuItem.addActionListener(e -> {
             if (fleet != null) {
@@ -97,10 +100,71 @@ public class VehicleRentalGUI extends JFrame {
         });
         exitMenuItem.addActionListener(e -> System.exit(0));
 
+        randomAeroVehicleMenuItem.addActionListener(e -> {
+           boolean n = random.nextBoolean();
+           if (n) {
+               fleet.addAerialVehicle(new Airplane(true));
+           } else {
+               fleet.addAerialVehicle(new Jetplane(true));
+           }
+           JOptionPane.showMessageDialog(this,
+                   (n? "Airplane" : "Jetplane" )+ " generated successfully",
+                   "Success",
+                   JOptionPane.INFORMATION_MESSAGE);
+
+           loadVehicles();
+           refreshAll();
+        });
+
+        randomNavalVehicleMenuItem.addActionListener(e -> {
+            Random rand = new Random();
+            switch (rand.nextInt(4)) {
+                case 0 -> {
+                    fleet.addNavalVehicle(new Yacht(true));
+                    JOptionPane.showMessageDialog(this,
+                            "Yacht generated successfully",
+                            "Success",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    loadVehicles();
+                    refreshAll();
+                }
+                case 1 -> {
+                    fleet.addNavalVehicle(new Jetsky(true));
+                    JOptionPane.showMessageDialog(this,
+                            "Jetsky generated successfully",
+                            "Success",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    loadVehicles();
+                    refreshAll();
+                }
+                case 2 -> {
+                    fleet.addNavalVehicle(new Boat(true));
+                    JOptionPane.showMessageDialog(this,
+                            "Boat generated successfully",
+                            "Success",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    loadVehicles();
+                    refreshAll();
+                }
+                case 3 -> {
+                    fleet.addNavalVehicle(new Sailboat(true));
+                    JOptionPane.showMessageDialog(this,
+                            "Sailboat generated successfully",
+                            "Success",
+                            JOptionPane.INFORMATION_MESSAGE);
+                    loadVehicles();
+                    refreshAll();
+                }
+            }
+        });
+
         loadSaveVehicles.add(saveMenuItem);
         loadSaveVehicles.add(loadMenuItem);
         loadSaveVehicles.add(exitMenuItem);
+        randomVehicles.add(randomAeroVehicleMenuItem);
+        randomVehicles.add(randomNavalVehicleMenuItem);
         menuBar.add(loadSaveVehicles);
+        menuBar.add(randomVehicles);
         setJMenuBar(menuBar);
     }
 
@@ -274,7 +338,7 @@ public class VehicleRentalGUI extends JFrame {
         if (random.nextBoolean()) {
             fleet.addAerialVehicle(new Airplane(true));
         } else {
-            fleet.addAerialVehicle(new Jetplane(true));
+            fleet.addNavalVehicle(new Jetsky(true));
         }
 
         loadVehicles();
