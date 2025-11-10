@@ -120,4 +120,11 @@ public class Car extends RollingVehicle {
         return actions;
     }
 
+    @Override
+    public String toString() {
+        return "Car{" +
+               "isRadioOn=" + isRadioOn +
+               ", isStorageFull=" + isStorageFull +
+               '}';
+    }
 }

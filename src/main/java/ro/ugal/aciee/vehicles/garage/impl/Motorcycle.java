@@ -132,4 +132,13 @@ public class Motorcycle extends RollingVehicle {
 
         return actions;
     }
+
+    @Override
+    public String toString() {
+        return "Motorcycle{" +
+               "engineCc=" + engineCc +
+               ", sportBike=" + sportBike +
+               ", maxSpeedKmh=" + maxSpeedKmh +
+               '}';
+    }
 }
