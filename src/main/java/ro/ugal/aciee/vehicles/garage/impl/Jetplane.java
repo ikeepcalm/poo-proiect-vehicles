@@ -35,10 +35,10 @@ public class Jetplane extends AeroVehicle {
         this.color = VehicleColor.values()[index];
         this.maxPassengers = rand.nextInt(10) + 5;
         this.needsMaintenance = rand.nextBoolean();
-        this.maxPayload =  rand.nextInt(1000) + 2000;
+        this.maxPayload = rand.nextInt(1000) + 2000;
         this.maxHeight = rand.nextInt(3000) + 6000;
         boolean foundEvenEngineCount = true;
-        while(foundEvenEngineCount) {
+        while (foundEvenEngineCount) {
             int engineCountCandidate = rand.nextInt(6) + 2;
             if (engineCountCandidate % 2 == 0) {
                 this.amountOfEngines = engineCountCandidate;
@@ -165,13 +165,14 @@ public class Jetplane extends AeroVehicle {
         JButton infoButton = new JButton("Jetplane Info");
         infoButton.addActionListener(e -> {
             String info = String.format(
-                    "Jetplane Details:\n" +
-                    "Max payload: %d kg\n" +
-                    "Max height: %d m\n" +
-                    "Engines: %d\n" +
-                    "Sharp nose: %s\n" +
-                    "Max G-force: %.2fg\n" +
-                    "Daily Price: $%.2f",
+                    """
+                            Jetplane Details:
+                            Max payload: %d kg
+                            Max height: %d m
+                            Engines: %d
+                            Sharp nose: %s
+                            Max G-force: %.2fg
+                            Daily Price: $%.2f""",
                     maxPayload,
                     maxHeight,
                     amountOfEngines,

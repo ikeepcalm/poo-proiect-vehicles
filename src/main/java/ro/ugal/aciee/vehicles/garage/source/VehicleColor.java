@@ -9,6 +9,6 @@ public enum VehicleColor {
     WHITE,
     BLACK,
     GRAY,
-    PINK;
+    PINK
 
 }

@@ -31,7 +31,7 @@ public class Scooter extends RollingVehicle {
         this.maxSpeedKmh = maxSpeedKmh;
     }
 
-    public Scooter (Scooter other) {
+    public Scooter(Scooter other) {
         super(other);
         this.electric = other.electric;
         this.batteryKWh = other.batteryKWh;
@@ -123,12 +123,13 @@ public class Scooter extends RollingVehicle {
         JButton infoButton = new JButton("Scooter Info");
         infoButton.addActionListener(e -> {
             String info = String.format(
-                    "Scooter Info:\n" +
-                    "Type: %s Scooter\n" +
-                    "Horsepower: %d HP\n" +
-                    "Max Speed: %d km/h\n" +
-                    "Battery: %.1f kWh\n" +
-                    "Daily Price: $%.2f",
+                    """
+                            Scooter Info:
+                            Type: %s Scooter
+                            Horsepower: %d HP
+                            Max Speed: %d km/h
+                            Battery: %.1f kWh
+                            Daily Price: $%.2f""",
                     electric ? "Electric" : "Gasoline",
                     horsePower,
                     maxSpeedKmh,

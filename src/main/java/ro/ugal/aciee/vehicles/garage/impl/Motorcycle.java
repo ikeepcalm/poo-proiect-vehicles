@@ -31,7 +31,7 @@ public class Motorcycle extends RollingVehicle {
         this.maxSpeedKmh = maxSpeedKmh;
     }
 
-    public Motorcycle (Motorcycle other) {
+    public Motorcycle(Motorcycle other) {
         super(other);
         this.engineCc = other.engineCc;
         this.sportBike = other.sportBike;
@@ -116,13 +116,14 @@ public class Motorcycle extends RollingVehicle {
         JButton infoButton = new JButton("Motorcycle Info");
         infoButton.addActionListener(e -> {
             String info = String.format(
-                    "Motorcycle Info:\n" +
-                    "Type: %s Motorcycle\n" +
-                    "Horsepower: %d HP\n" +
-                    "Max Speed: %d km/h\n" +
-                    "Engine: %.1f cc\n" +
-                    "Sport Mode: %s\n" +
-                    "Daily Price: $%.2f",
+                    """
+                            Motorcycle Info:
+                            Type: %s Motorcycle
+                            Horsepower: %d HP
+                            Max Speed: %d km/h
+                            Engine: %.1f cc
+                            Sport Mode: %s
+                            Daily Price: $%.2f""",
                     electric ? "Electric" : "Gasoline",
                     horsePower,
                     maxSpeedKmh,

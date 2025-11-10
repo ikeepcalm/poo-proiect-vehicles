@@ -1,14 +1,15 @@
 package ro.ugal.aciee.vehicles.gui;
 
 import ro.ugal.aciee.vehicles.garage.Vehicle;
+import ro.ugal.aciee.vehicles.garage.impl.*;
 import ro.ugal.aciee.vehicles.garage.source.VehicleColor;
-
 import ro.ugal.aciee.vehicles.service.VehicleFleet;
 
 import javax.swing.*;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.util.List;
+import java.util.Random;
 
 
 public class VehicleRentalGUI extends JFrame {
@@ -17,7 +18,6 @@ public class VehicleRentalGUI extends JFrame {
     private VehicleTableModel tableModel;
     private JTable vehicleTable;
     private VehicleDetailsPanel detailsPanel;
-    private TableRowSorter<VehicleTableModel> sorter;
 
     private JComboBox<String> colorFilterCombo;
     private JSpinner yearFilterSpinner;
@@ -28,6 +28,8 @@ public class VehicleRentalGUI extends JFrame {
 
     private JLabel totalVehiclesLabel;
     private JLabel availableVehiclesLabel;
+
+    Random random = new Random();
 
     public VehicleRentalGUI(VehicleFleet fleet) {
         this.fleet = fleet;
@@ -204,7 +206,7 @@ public class VehicleRentalGUI extends JFrame {
         vehicleTable.setRowHeight(25);
         vehicleTable.getTableHeader().setReorderingAllowed(false);
 
-        sorter = new TableRowSorter<>(tableModel);
+        TableRowSorter<VehicleTableModel> sorter = new TableRowSorter<>(tableModel);
         vehicleTable.setRowSorter(sorter);
 
         vehicleTable.getSelectionModel().addListSelectionListener(e -> {
@@ -255,8 +257,8 @@ public class VehicleRentalGUI extends JFrame {
         clearButton.addActionListener(e -> clearAll());
 
         JButton generateButton = new JButton("Generate new vehicle");
-        clearButton.setPreferredSize(new Dimension(150, 50));
-        clearButton.addActionListener(e -> generatenew());
+        generateButton.setPreferredSize(new Dimension(120, 35));
+        generateButton.addActionListener(e -> generateNewVehicle());
 
         southPanel.add(rentButton);
         southPanel.add(returnButton);
@@ -268,9 +270,16 @@ public class VehicleRentalGUI extends JFrame {
         add(southPanel, BorderLayout.SOUTH);
     }
 
-    private void generatenew() {
-    }
+    private void generateNewVehicle() {
+        if (random.nextBoolean()) {
+            fleet.addAerialVehicle(new Airplane(true));
+        } else {
+            fleet.addAerialVehicle(new Jetplane(true));
+        }
 
+        loadVehicles();
+        refreshAll();
+    }
 
     private void clearAll() {
         tableModel.setVehicles(List.of());

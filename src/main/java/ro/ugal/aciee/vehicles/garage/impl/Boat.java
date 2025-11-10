@@ -94,8 +94,16 @@ public class Boat extends NavalVehicle {
         JButton infoButton = new JButton("Boat Info");
         infoButton.addActionListener(e -> {
             String info = String.format(
-                    "Boat Details:\nYear: %d\nMileage: %d\nColor: %s\nPassengers: %d\n" +
-                    "Can operate in storm: %s\nAnchor dropped: %s\nHas cabin: %s\nDaily Price: $%.2f",
+                    """
+                            Boat Details:
+                            Year: %d
+                            Mileage: %d
+                            Color: %s
+                            Passengers: %d
+                            Can operate in storm: %s
+                            Anchor dropped: %s
+                            Has cabin: %s
+                            Daily Price: $%.2f""",
                     year, mileage, color, maxPassengers,
                     canOperateInStorm ? "Yes" : "No",
                     anchorDropped ? "Yes" : "No",
@@ -112,8 +120,8 @@ public class Boat extends NavalVehicle {
     @Override
     public String toString() {
         return "Boat{" +
-                "anchorDropped=" + anchorDropped +
-                ", hasCabin=" + hasCabin +
-                '}';
+               "anchorDropped=" + anchorDropped +
+               ", hasCabin=" + hasCabin +
+               '}';
     }
 }

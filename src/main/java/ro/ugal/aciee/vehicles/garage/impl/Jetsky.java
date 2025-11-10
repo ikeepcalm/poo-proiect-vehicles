@@ -112,12 +112,13 @@ public class Jetsky extends NavalVehicle {
         JButton infoButton = new JButton("Jetsky Info");
         infoButton.addActionListener(e -> {
             String info = String.format(
-                    "Jetsky Details:\n" +
-                    "Max payload: %dkg\n" +
-                    "Can operate in storm: %s\n" +
-                    "Amount of pilots: %d\n" +
-                    "Loudness: %.2f\n" +
-                    "Daily Price: $%.2f",
+                    """
+                            Jetsky Details:
+                            Max payload: %dkg
+                            Can operate in storm: %s
+                            Amount of pilots: %d
+                            Loudness: %.2f
+                            Daily Price: $%.2f""",
                     maxPayload,
                     canOperateInStorm ? "Yes" : "No",
                     amountOfPilots,

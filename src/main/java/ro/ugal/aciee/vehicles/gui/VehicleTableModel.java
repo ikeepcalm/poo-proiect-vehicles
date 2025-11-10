@@ -23,11 +23,6 @@ public class VehicleTableModel extends AbstractTableModel {
         this.vehicles = vehicles;
     }
 
-    public void setVehicles(List<Vehicle> vehicles) {
-        this.vehicles = vehicles;
-        fireTableDataChanged();
-    }
-
     public void addVehicle(Vehicle vehicle) {
         vehicles.add(vehicle);
         fireTableRowsInserted(vehicles.size() - 1, vehicles.size() - 1);
@@ -42,6 +37,11 @@ public class VehicleTableModel extends AbstractTableModel {
 
     public List<Vehicle> getVehicles() {
         return vehicles;
+    }
+
+    public void setVehicles(List<Vehicle> vehicles) {
+        this.vehicles = vehicles;
+        fireTableDataChanged();
     }
 
     @Override

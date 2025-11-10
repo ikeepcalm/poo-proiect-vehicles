@@ -53,15 +53,15 @@ public class Atv extends RollingVehicle {
 
     @Override
     public double getDailyRentalPrice() {
-        double DefaulPrice = 100;
+        double defaultPrice = 100;
         if (this.spareWheel == true) {
-            DefaulPrice *= 2;
+            defaultPrice *= 2;
         }
         if (this.size > 4) {
-            DefaulPrice += 100;
+            defaultPrice += 100;
 
         }
-        return DefaulPrice;
+        return defaultPrice;
     }
 
     public List<JButton> getInteractiveActions() {
@@ -84,7 +84,7 @@ public class Atv extends RollingVehicle {
                 size += 1;
                 JOptionPane.showMessageDialog(
                         null,
-                        String.format(" Size have been increased ", size),
+                        String.format(" Size have been increased to %s", size),
                         " Increased ",
                         JOptionPane.INFORMATION_MESSAGE
                 );
@@ -105,7 +105,7 @@ public class Atv extends RollingVehicle {
                 size -= 1;
                 JOptionPane.showMessageDialog(
                         null,
-                        String.format(" Size has been decreasesd", size),
+                        String.format(" Size has been decreasesd to %s", size),
                         " Decrased ",
                         JOptionPane.INFORMATION_MESSAGE
                 );
@@ -123,13 +123,14 @@ public class Atv extends RollingVehicle {
         JButton infoButton = new JButton("Atv info");
         infoButton.addActionListener(e -> {
             String info = String.format(
-                    "Atv Info:\n" +
-                    "Type: %s Atv\n" +
-                    "Horsepower: %d HP\n" +
-                    "Max Speed: %d km/h\n" +
-                    "Size: %d\n" +
-                    "Spare wheel: %s\n" +
-                    "Daily Price: $%.2f",
+                    """
+                            Atv Info:
+                            Type: %s Atv
+                            Horsepower: %d HP
+                            Max Speed: %d km/h
+                            Size: %d
+                            Spare wheel: %s
+                            Daily Price: $%.2f""",
                     electric ? "Electric" : "Gasoline",
                     horsePower,
                     maxSpeedKmh,

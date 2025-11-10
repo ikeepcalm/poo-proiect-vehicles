@@ -73,7 +73,7 @@ public class ElectricBike extends RollingVehicle {
                 range += 100;
                 JOptionPane.showMessageDialog(
                         null,
-                        String.format(" Range has been increasesd", range),
+                        String.format(" Range has been increasesd to %s", range),
                         " increase range ",
                         JOptionPane.INFORMATION_MESSAGE
                 );
@@ -94,7 +94,7 @@ public class ElectricBike extends RollingVehicle {
                 range -= 100;
                 JOptionPane.showMessageDialog(
                         null,
-                        String.format(" Range has been reducedd", range),
+                        String.format(" Range has been reduced to %s", range),
                         " Reduce range ",
                         JOptionPane.INFORMATION_MESSAGE
                 );
@@ -114,12 +114,13 @@ public class ElectricBike extends RollingVehicle {
         JButton infoButton = new JButton("Bike info");
         infoButton.addActionListener(e -> {
             String info = String.format(
-                    "Bike Info:\n" +
-                    "Type: %s Bike\n" +
-                    "Horsepower: %d HP\n" +
-                    "Max Speed: %d km/h\n" +
-                    "Range: %d\n" +
-                    "Daily Price: $%.2f",
+                    """
+                            Bike Info:
+                            Type: %s Bike
+                            Horsepower: %d HP
+                            Max Speed: %d km/h
+                            Range: %d
+                            Daily Price: $%.2f""",
                     electric ? "Electric" : "Gasoline",
                     horsePower,
                     maxSpeedKmh,

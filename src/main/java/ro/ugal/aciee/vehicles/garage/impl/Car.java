@@ -102,13 +102,14 @@ public class Car extends RollingVehicle {
         JButton infoButton = new JButton("Car Info");
         infoButton.addActionListener(e -> {
             String info = String.format(
-                    "Car Details:\n" +
-                    "Type: %s Car\n" +
-                    "Horsepower: %d HP\n" +
-                    "Max Speed: %d km/h\n" +
-                    "Radio: %s\n" +
-                    "Storage: %s\n" +
-                    "Daily Price: $%.2f",
+                    """
+                            Car Details:
+                            Type: %s Car
+                            Horsepower: %d HP
+                            Max Speed: %d km/h
+                            Radio: %s
+                            Storage: %s
+                            Daily Price: $%.2f""",
                     electric ? "Electric" : "Gasoline",
                     horsePower,
                     maxSpeedKmh,

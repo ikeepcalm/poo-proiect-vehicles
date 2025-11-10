@@ -150,15 +150,17 @@ public abstract class Vehicle implements Rentable, Serializable {
         JButton infoButton = new JButton("Vehicle Info");
         infoButton.addActionListener(e -> {
             String info = String.format(
-                    "Vehicle Information:\n\n" +
-                    "ID: %s\n" +
-                    "Year: %d\n" +
-                    "Mileage: %d km\n" +
-                    "Color: %s\n" +
-                    "Max Passengers: %d\n" +
-                    "Status: %s\n" +
-                    "Needs Maintenance: %s\n" +
-                    "Daily Rental Price: $%.2f",
+                    """
+                            Vehicle Information:
+                            
+                            ID: %s
+                            Year: %d
+                            Mileage: %d km
+                            Color: %s
+                            Max Passengers: %d
+                            Status: %s
+                            Needs Maintenance: %s
+                            Daily Rental Price: $%.2f""",
                     id.toString().substring(0, 8) + "...",
                     year,
                     mileage,

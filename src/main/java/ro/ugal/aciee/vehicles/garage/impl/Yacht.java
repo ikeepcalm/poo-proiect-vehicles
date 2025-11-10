@@ -77,12 +77,13 @@ public class Yacht extends NavalVehicle {
         JButton infoButton = new JButton("Yacht Info");
         infoButton.addActionListener(e -> {
             String info = String.format(
-                    "Yacht Details:\n" +
-                    "Max payload: %dkg\n" +
-                    "Can operate in storm: %s\n" +
-                    "Has pool: %s\n" +
-                    "Sails raised: %s\n" +
-                    "Daily Price: $%.2f",
+                    """
+                            Yacht Details:
+                            Max payload: %dkg
+                            Can operate in storm: %s
+                            Has pool: %s
+                            Sails raised: %s
+                            Daily Price: $%.2f""",
                     maxPayload,
                     canOperateInStorm ? "Yes" : "No",
                     hasPool ? "Yes" : "No",
