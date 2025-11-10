@@ -28,6 +28,12 @@ public class ElectricBike extends RollingVehicle {
 
     }
 
+    public ElectricBike(RollingVehicle other, int range, String address) {
+        super(other);
+        this.range = range;
+        this.address = address;
+    }
+
     public int getRange() {
         return range;
     }

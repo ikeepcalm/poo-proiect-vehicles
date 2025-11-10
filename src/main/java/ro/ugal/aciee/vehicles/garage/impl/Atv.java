@@ -28,6 +28,12 @@ public class Atv extends RollingVehicle {
         this.spareWheel = spareWheel;
     }
 
+    public Atv(RollingVehicle other, int size, boolean spareWheel) {
+        super(other);
+        this.size = size;
+        this.spareWheel = spareWheel;
+    }
+
     public int getSize() {
         return size;
     }
