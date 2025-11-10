@@ -31,9 +31,13 @@ public class Main {
         NavalVehicle iraJetsky = new Jetsky(2019, 1000, VehicleColor.PINK, 2, false, 200, false, 1, 9);
         NavalVehicle iraYacht = new Yacht(2006, 4000, VehicleColor.WHITE, 10, true, 1500, true, true, false);
 
+        NavalVehicle alexBoat = new Boat(2022, 250, VehicleColor.BLUE, 6, false, 3000, true, false, true);
+        NavalVehicle alexSailboat = new Sailboat(2021, 180, VehicleColor.WHITE, 4, false, 2000, false, true, true);
+
         RollingVehicle sashaMotorcycle = new Motorcycle(2018, 150, VehicleColor.BLACK, 2, false, false, 200, 220, 500, true);
         RollingVehicle sashaScooter = new Scooter(2016, 100, VehicleColor.BLUE, 2, false, true, 21, 91, 1.2);
 
+        
         fleet.addRollingVehicle(bohdanCar);
         fleet.addRollingVehicle(bohdanTruck);
         fleet.addRollingVehicle(artemsAtv);
@@ -42,6 +46,8 @@ public class Main {
         fleet.addAerialVehicle(timJetsky);
         fleet.addNavalVehicle(iraJetsky);
         fleet.addNavalVehicle(iraYacht);
+        fleet.addNavalVehicle(alexBoat);
+        fleet.addNavalVehicle(alexSailboat);
         fleet.addRollingVehicle(sashaMotorcycle);
         fleet.addRollingVehicle(sashaScooter);
 
