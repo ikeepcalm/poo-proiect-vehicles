@@ -45,8 +45,6 @@ public class ElectricBike extends RollingVehicle {
     }
 
 
-
-
     @Override
     public double getDailyRentalPrice() {
         double DefaulPrice = 20;
@@ -56,7 +54,7 @@ public class ElectricBike extends RollingVehicle {
         if (this.color == VehicleColor.PINK) {
             DefaulPrice *= 10;
         }
-        return  DefaulPrice;
+        return DefaulPrice;
 
     }
 
@@ -65,22 +63,22 @@ public class ElectricBike extends RollingVehicle {
 
         JButton rangeButton = new JButton(" increase range ");
         rangeButton.addActionListener(e -> {
-        if (range < 2000) {
-            range += 100;
-            JOptionPane.showMessageDialog(
-                    null,
-                    String.format(" Range has been increasesd", range),
-                    " increase range ",
-                    JOptionPane.INFORMATION_MESSAGE
-            );
-        } else {
-            JOptionPane.showMessageDialog(
-                    null,
-                    " Max range ",
-                    " Warning ",
-                    JOptionPane.WARNING_MESSAGE
-            );
-        }
+            if (range < 2000) {
+                range += 100;
+                JOptionPane.showMessageDialog(
+                        null,
+                        String.format(" Range has been increasesd", range),
+                        " increase range ",
+                        JOptionPane.INFORMATION_MESSAGE
+                );
+            } else {
+                JOptionPane.showMessageDialog(
+                        null,
+                        " Max range ",
+                        " Warning ",
+                        JOptionPane.WARNING_MESSAGE
+                );
+            }
         });
         actions.add(rangeButton);
 
@@ -111,11 +109,11 @@ public class ElectricBike extends RollingVehicle {
         infoButton.addActionListener(e -> {
             String info = String.format(
                     "Bike Info:\n" +
-                            "Type: %s Bike\n" +
-                            "Horsepower: %d HP\n" +
-                            "Max Speed: %d km/h\n" +
-                            "Range: %d\n" +
-                            "Daily Price: $%.2f",
+                    "Type: %s Bike\n" +
+                    "Horsepower: %d HP\n" +
+                    "Max Speed: %d km/h\n" +
+                    "Range: %d\n" +
+                    "Daily Price: $%.2f",
                     electric ? "Electric" : "Gasoline",
                     horsePower,
                     maxSpeedKmh,
@@ -135,9 +133,9 @@ public class ElectricBike extends RollingVehicle {
     @Override
     public String toString() {
         return "ElectricBike{" +
-                "range=" + range +
-                ", address='" + address + '\'' +
-                '}';
+               "range=" + range +
+               ", address='" + address + '\'' +
+               '}';
     }
 }
 

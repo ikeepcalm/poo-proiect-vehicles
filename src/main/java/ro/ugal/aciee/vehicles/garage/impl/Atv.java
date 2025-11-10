@@ -118,12 +118,12 @@ public class Atv extends RollingVehicle {
         infoButton.addActionListener(e -> {
             String info = String.format(
                     "Atv Info:\n" +
-                            "Type: %s Atv\n" +
-                            "Horsepower: %d HP\n" +
-                            "Max Speed: %d km/h\n" +
-                            "Size: %d\n" +
-                            "Spare wheel: %s\n" +
-                            "Daily Price: $%.2f",
+                    "Type: %s Atv\n" +
+                    "Horsepower: %d HP\n" +
+                    "Max Speed: %d km/h\n" +
+                    "Size: %d\n" +
+                    "Spare wheel: %s\n" +
+                    "Daily Price: $%.2f",
                     electric ? "Electric" : "Gasoline",
                     horsePower,
                     maxSpeedKmh,
@@ -144,9 +144,9 @@ public class Atv extends RollingVehicle {
     @Override
     public String toString() {
         return "Atv{" +
-                "size=" + size +
-                ", spareWheel=" + spareWheel +
-                '}';
+               "size=" + size +
+               ", spareWheel=" + spareWheel +
+               '}';
     }
 }
 

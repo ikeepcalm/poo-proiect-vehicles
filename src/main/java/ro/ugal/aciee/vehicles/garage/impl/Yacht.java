@@ -1,6 +1,5 @@
 package ro.ugal.aciee.vehicles.garage.impl;
 
-import ro.ugal.aciee.vehicles.garage.Vehicle;
 import ro.ugal.aciee.vehicles.garage.source.VehicleColor;
 import ro.ugal.aciee.vehicles.garage.types.NavalVehicle;
 
@@ -46,14 +45,14 @@ public class Yacht extends NavalVehicle {
     }
 
     @Override
-    public double getDailyRentalPrice(){
+    public double getDailyRentalPrice() {
         double basePrice = 500.0;
 
-        if(hasPool){
+        if (hasPool) {
             basePrice *= 1.3;
         }
 
-        if(canOperateInStorm){
+        if (canOperateInStorm) {
             basePrice *= 2;
         }
 
@@ -69,7 +68,7 @@ public class Yacht extends NavalVehicle {
             hasPool = !hasPool;
             poolButton.setText(hasPool ? "Disable pool" : "Enable pool");
             JOptionPane.showMessageDialog(null,
-                    "Yacht is now has pool: " + (hasPool? "ENABLE" : "DISABLE"),
+                    "Yacht is now has pool: " + (hasPool ? "ENABLE" : "DISABLE"),
                     "Yacht Status Updated",
                     JOptionPane.INFORMATION_MESSAGE);
         });
@@ -77,17 +76,17 @@ public class Yacht extends NavalVehicle {
 
         JButton infoButton = new JButton("Yacht Info");
         infoButton.addActionListener(e -> {
-            String info =String.format(
-                    "Yacht Details:\n"+
-                            "Max payload: %dkg\n"+
-                            "Can operate in storm: %s\n"+
-                            "Has pool: %s\n"+
-                            "Sails raised: %s\n"+
-                            "Daily Price: $%.2f",
+            String info = String.format(
+                    "Yacht Details:\n" +
+                    "Max payload: %dkg\n" +
+                    "Can operate in storm: %s\n" +
+                    "Has pool: %s\n" +
+                    "Sails raised: %s\n" +
+                    "Daily Price: $%.2f",
                     maxPayload,
-                    canOperateInStorm  ? "Yes" : "No",
+                    canOperateInStorm ? "Yes" : "No",
                     hasPool ? "Yes" : "No",
-                    sailsRaised ? "Yes" : "No" ,
+                    sailsRaised ? "Yes" : "No",
                     getDailyRentalPrice()
             );
             JOptionPane.showMessageDialog(null,

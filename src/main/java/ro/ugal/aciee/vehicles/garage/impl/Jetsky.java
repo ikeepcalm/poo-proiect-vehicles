@@ -1,6 +1,5 @@
 package ro.ugal.aciee.vehicles.garage.impl;
 
-import ro.ugal.aciee.vehicles.garage.Vehicle;
 import ro.ugal.aciee.vehicles.garage.source.VehicleColor;
 import ro.ugal.aciee.vehicles.garage.types.NavalVehicle;
 
@@ -46,18 +45,18 @@ public class Jetsky extends NavalVehicle {
     }
 
     @Override
-    public double getDailyRentalPrice(){
+    public double getDailyRentalPrice() {
         double basePrice = 200.0;
 
-        if(amountOfPilots > 1){
+        if (amountOfPilots > 1) {
             basePrice *= amountOfPilots * 1.7;
-        } else{
+        } else {
             basePrice *= amountOfPilots * 1.2;
         }
 
-        if(maxPayload < 120){
+        if (maxPayload < 120) {
             basePrice *= 1.2;
-        } else{
+        } else {
             basePrice *= 1.6;
         }
 
@@ -65,12 +64,12 @@ public class Jetsky extends NavalVehicle {
     }
 
     @Override
-    public List<JButton> getInteractiveActions(){
+    public List<JButton> getInteractiveActions() {
         List<JButton> actions = new ArrayList<>();
 
         JButton pilotsPlusButton = new JButton("Add Pilots");
         pilotsPlusButton.addActionListener(e -> {
-            if(amountOfPilots <= 1){
+            if (amountOfPilots <= 1) {
                 ++amountOfPilots;
                 JOptionPane.showMessageDialog(
                         null,
@@ -78,7 +77,7 @@ public class Jetsky extends NavalVehicle {
                         "Adding Pilots ",
                         JOptionPane.INFORMATION_MESSAGE
                 );
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(
                         null,
                         "Maximum number of pilots reached",
@@ -91,7 +90,7 @@ public class Jetsky extends NavalVehicle {
 
         JButton pilotsMinusButton = new JButton("Remove Pilots");
         pilotsMinusButton.addActionListener(e -> {
-            if(amountOfPilots > 1){
+            if (amountOfPilots > 1) {
                 --amountOfPilots;
                 JOptionPane.showMessageDialog(
                         null,
@@ -99,7 +98,7 @@ public class Jetsky extends NavalVehicle {
                         "Removing Pilots",
                         JOptionPane.INFORMATION_MESSAGE
                 );
-            }else {
+            } else {
                 JOptionPane.showMessageDialog(
                         null,
                         "Minimum number of pilots reached",
@@ -112,17 +111,17 @@ public class Jetsky extends NavalVehicle {
 
         JButton infoButton = new JButton("Jetsky Info");
         infoButton.addActionListener(e -> {
-            String info =String.format(
-                    "Jetsky Details:\n"+
-                            "Max payload: %dkg\n"+
-                            "Can operate in storm: %s\n"+
-                            "Amount of pilots: %d\n"+
-                            "Loudness: %.2f\n"+
-                            "Daily Price: $%.2f",
+            String info = String.format(
+                    "Jetsky Details:\n" +
+                    "Max payload: %dkg\n" +
+                    "Can operate in storm: %s\n" +
+                    "Amount of pilots: %d\n" +
+                    "Loudness: %.2f\n" +
+                    "Daily Price: $%.2f",
                     maxPayload,
-                    canOperateInStorm  ? "Yes" : "No",
+                    canOperateInStorm ? "Yes" : "No",
                     amountOfPilots,
-                    loudness ,
+                    loudness,
                     getDailyRentalPrice()
             );
             JOptionPane.showMessageDialog(null,

@@ -110,12 +110,12 @@ public class Motorcycle extends RollingVehicle {
         infoButton.addActionListener(e -> {
             String info = String.format(
                     "Motorcycle Info:\n" +
-                            "Type: %s Motorcycle\n" +
-                            "Horsepower: %d HP\n" +
-                            "Max Speed: %d km/h\n" +
-                            "Engine: %.1f cc\n" +
-                            "Sport Mode: %s\n" +
-                            "Daily Price: $%.2f",
+                    "Type: %s Motorcycle\n" +
+                    "Horsepower: %d HP\n" +
+                    "Max Speed: %d km/h\n" +
+                    "Engine: %.1f cc\n" +
+                    "Sport Mode: %s\n" +
+                    "Daily Price: $%.2f",
                     electric ? "Electric" : "Gasoline",
                     horsePower,
                     maxSpeedKmh,

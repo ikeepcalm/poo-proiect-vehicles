@@ -4,7 +4,6 @@ import ro.ugal.aciee.vehicles.garage.source.VehicleColor;
 import ro.ugal.aciee.vehicles.garage.types.AeroVehicle;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,10 +46,10 @@ public class Airplane extends AeroVehicle {
     }
 
     @Override
-    public double getDailyRentalPrice(){
+    public double getDailyRentalPrice() {
         double basePrice = 1500.0;
 
-        if(isFragileCargo){
+        if (isFragileCargo) {
             basePrice *= 1.8;
         } else {
             basePrice *= 1.2;
@@ -88,19 +87,19 @@ public class Airplane extends AeroVehicle {
 
         JButton wingspanButton = new JButton(openWingspan ? "Close wingspan" : "Open wingspan");
         wingspanButton.addActionListener(e -> {
-           openWingspan = !openWingspan;
-            if(openWingspan){
+            openWingspan = !openWingspan;
+            if (openWingspan) {
                 wingspan += 1.5;
-            } else{
+            } else {
                 wingspan -= 1.5;
             }
-           wingspanButton.setText(openWingspan ? "Close wingspan" : "Open wingspan");
-           JOptionPane.showMessageDialog(
-                   null,
-                   "Wingspan is now " + (openWingspan ? "OPEN" : "CLOSED"),
-                   "Wingspan Status Updated",
-                   JOptionPane.INFORMATION_MESSAGE
-           );
+            wingspanButton.setText(openWingspan ? "Close wingspan" : "Open wingspan");
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Wingspan is now " + (openWingspan ? "OPEN" : "CLOSED"),
+                    "Wingspan Status Updated",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
         });
         actions.add(wingspanButton);
 
@@ -108,12 +107,12 @@ public class Airplane extends AeroVehicle {
         infoButton.addActionListener(e -> {
             String info = String.format(
                     "Airplane Details:\n" +
-                            "Max payload: %d kg\n" +
-                            "Max height: %d m\n" +
-                            "Engines: %d\n" +
-                            "Fragile Gargo: %s\n" +
-                            "Wingspan: %.2fm\n" +
-                            "Daily Price: $%.2f",
+                    "Max payload: %d kg\n" +
+                    "Max height: %d m\n" +
+                    "Engines: %d\n" +
+                    "Fragile Gargo: %s\n" +
+                    "Wingspan: %.2fm\n" +
+                    "Daily Price: $%.2f",
                     maxPayload,
                     maxHeight,
                     amountOfEngines,

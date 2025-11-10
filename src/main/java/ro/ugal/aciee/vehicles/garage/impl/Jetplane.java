@@ -54,7 +54,7 @@ public class Jetplane extends AeroVehicle {
     }
 
     @Override
-    public double getDailyRentalPrice(){
+    public double getDailyRentalPrice() {
         double basePrice = 1000.0;
 
         if (maxHeight > 2000) {
@@ -64,9 +64,9 @@ public class Jetplane extends AeroVehicle {
             basePrice += amountOfEngines * 150;
         }
 
-        if(maxPassengers > 10){
+        if (maxPassengers > 10) {
             basePrice += maxPassengers * 1.6;
-        } else{
+        } else {
             basePrice += maxPassengers * 1.2;
         }
 
@@ -74,7 +74,7 @@ public class Jetplane extends AeroVehicle {
     }
 
     @Override
-    public List<JButton> getInteractiveActions(){
+    public List<JButton> getInteractiveActions() {
         List<JButton> actions = new ArrayList<>();
 
         JButton noseButton = new JButton(sharpNose ? "Disable Sharp Nose" : "Enable Sharp Nose");
@@ -134,12 +134,12 @@ public class Jetplane extends AeroVehicle {
         infoButton.addActionListener(e -> {
             String info = String.format(
                     "Jetplane Details:\n" +
-                            "Max payload: %d kg\n" +
-                            "Max height: %d m\n" +
-                            "Engines: %d\n" +
-                            "Sharp nose: %s\n" +
-                            "Max G-force: %.2fg\n" +
-                            "Daily Price: $%.2f",
+                    "Max payload: %d kg\n" +
+                    "Max height: %d m\n" +
+                    "Engines: %d\n" +
+                    "Sharp nose: %s\n" +
+                    "Max G-force: %.2fg\n" +
+                    "Daily Price: $%.2f",
                     maxPayload,
                     maxHeight,
                     amountOfEngines,
