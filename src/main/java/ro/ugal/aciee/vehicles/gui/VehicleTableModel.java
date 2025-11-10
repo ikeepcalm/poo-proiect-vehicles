@@ -5,11 +5,12 @@ import ro.ugal.aciee.vehicles.garage.Vehicle;
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class VehicleTableModel extends AbstractTableModel {
 
     private static final String[] COLUMN_NAMES = {
-            "Type", "Year", "Color", "Passengers", "Mileage", "Daily Price", "Status"
+            "Id", "Type", "Year", "Color", "Passengers", "Mileage", "Daily Price", "Status"
     };
 
     private List<Vehicle> vehicles;
@@ -63,13 +64,14 @@ public class VehicleTableModel extends AbstractTableModel {
         Vehicle vehicle = vehicles.get(rowIndex);
 
         return switch (columnIndex) {
-            case 0 -> vehicle.getClass().getSimpleName();
-            case 1 -> vehicle.getYear();
-            case 2 -> vehicle.getColor();
-            case 3 -> vehicle.getMaxPassengers();
-            case 4 -> vehicle.getMileage() + " km";
-            case 5 -> String.format("$%.2f", vehicle.getDailyRentalPrice());
-            case 6 -> vehicle.isNeedsMaintenance() ? "Maintenance" : vehicle.isRented() ? "Rented" : "Available";
+            case 0 -> vehicle.getId();
+            case 1 -> vehicle.getClass().getSimpleName();
+            case 2 -> vehicle.getYear();
+            case 3 -> vehicle.getColor();
+            case 4 -> vehicle.getMaxPassengers();
+            case 5 -> vehicle.getMileage() + " km";
+            case 6 -> String.format("$%.2f", vehicle.getDailyRentalPrice());
+            case 7 -> vehicle.isNeedsMaintenance() ? "Maintenance" : vehicle.isRented() ? "Rented" : "Available";
             default -> null;
         };
     }
@@ -77,8 +79,9 @@ public class VehicleTableModel extends AbstractTableModel {
     @Override
     public Class<?> getColumnClass(int columnIndex) {
         return switch (columnIndex) {
-            case 0, 2, 4, 5, 6 -> String.class;
-            case 1, 3 -> Integer.class;
+            case 0 -> UUID.class;
+            case 1, 3, 5, 6, 7 -> String.class;
+            case 2, 4 -> Integer.class;
             default -> Object.class;
         };
     }

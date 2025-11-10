@@ -98,7 +98,7 @@ public class VehicleFleet {
         List<Vehicle> vehiclesByColorAndYear = new ArrayList<>();
 
         for (Vehicle vehicle : allVehicles) {
-            if (vehicle.getColor() == color && vehicle.getYear() == year) {
+            if (vehicle.getColor() == color && vehicle.getYear() < year) {
                 vehiclesByColorAndYear.add(vehicle);
             }
         }
