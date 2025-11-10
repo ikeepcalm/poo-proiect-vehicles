@@ -21,6 +21,22 @@ public class VehicleFleet {
         this.navalVehicles = new ArrayList<>();
     }
 
+    public VehicleFleet(List<Vehicle> vehicles) {
+        this.rollingVehicles = new ArrayList<>();
+        this.aerialVehicles = new ArrayList<>();
+        this.navalVehicles = new ArrayList<>();
+
+        for (Vehicle vehicle : vehicles) {
+            if (vehicle instanceof RollingVehicle rollingVehicle) {
+                this.rollingVehicles.add(rollingVehicle);
+            } else if (vehicle instanceof AeroVehicle aerialVehicle) {
+                this.aerialVehicles.add(aerialVehicle);
+            } else if (vehicle instanceof NavalVehicle navalVehicle) {
+                this.navalVehicles.add(navalVehicle);
+            }
+        }
+    }
+
     public void addRollingVehicle(RollingVehicle rollingVehicle) {
         this.rollingVehicles.add(rollingVehicle);
     }

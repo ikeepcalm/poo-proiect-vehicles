@@ -11,7 +11,7 @@ import java.util.List;
 
 public class VehicleRentalGUI extends JFrame {
 
-    private final VehicleFleet fleet;
+    private VehicleFleet fleet;
     private VehicleTableModel tableModel;
     private JTable vehicleTable;
     private VehicleDetailsPanel detailsPanel;
@@ -42,9 +42,62 @@ public class VehicleRentalGUI extends JFrame {
 
         setLayout(new BorderLayout(10, 10));
 
+        createMenuBar();
         createNorthPanel();
         createCenterPanel();
         createSouthPanel();
+    }
+
+    private void createMenuBar() {
+        JMenuBar menuBar = new JMenuBar();
+        JMenu loadSaveVehicles = new JMenu("Load & Save Vehicles");
+        JMenuItem saveMenuItem = new JMenuItem("Save");
+        JMenuItem loadMenuItem = new JMenuItem("Load");
+        JMenuItem exitMenuItem = new JMenuItem("Exit");
+
+        saveMenuItem.addActionListener(e -> {
+            if (fleet != null) {
+                JFileChooser chooser = new JFileChooser();
+
+                int returnVal = chooser.showSaveDialog(this);
+                if (returnVal != JFileChooser.APPROVE_OPTION) {
+                    return;
+                }
+
+                String filePath = chooser.getSelectedFile().getAbsolutePath();
+
+                if (!filePath.trim().isEmpty()) {
+                    if (FileManager.saveVehicles(fleet.getAllVehicles(), filePath)) {
+                        JOptionPane.showMessageDialog(this, "Vehicles saved successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }
+            }
+        });
+
+        loadMenuItem.addActionListener(e -> {
+
+            JFileChooser chooser = new JFileChooser();
+            int returnVal = chooser.showOpenDialog(this);
+
+            if (returnVal == JFileChooser.APPROVE_OPTION) {
+                String filePath = chooser.getSelectedFile().getAbsolutePath();
+                List<Vehicle> loadedVehicles = FileManager.loadVehicles(filePath);
+                if (loadedVehicles != null) {
+                    this.fleet = new VehicleFleet(loadedVehicles);
+                    JOptionPane.showMessageDialog(this, "Vehicles loaded successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+                    loadVehicles();
+                    updateStatusLabels();
+                }
+            }
+        });
+        exitMenuItem.addActionListener(e -> System.exit(0));
+
+        loadSaveVehicles.add(saveMenuItem);
+        loadSaveVehicles.add(loadMenuItem);
+        loadSaveVehicles.add(exitMenuItem);
+        menuBar.add(loadSaveVehicles);
+        setJMenuBar(menuBar);
     }
 
     private void createNorthPanel() {
@@ -195,12 +248,23 @@ public class VehicleRentalGUI extends JFrame {
         refreshButton.setPreferredSize(new Dimension(120, 35));
         refreshButton.addActionListener(e -> refreshAll());
 
+        JButton clearButton = new JButton("Remove All");
+        clearButton.setPreferredSize(new Dimension(120, 35));
+        clearButton.addActionListener(e -> clearAll());
+
         southPanel.add(rentButton);
         southPanel.add(returnButton);
         southPanel.add(maintenanceButton);
         southPanel.add(refreshButton);
+        southPanel.add(clearButton);
 
         add(southPanel, BorderLayout.SOUTH);
+    }
+
+    private void clearAll() {
+        tableModel.setVehicles(List.of());
+        fleet = new VehicleFleet();
+        updateStatusLabels();
     }
 
     private void loadVehicles() {

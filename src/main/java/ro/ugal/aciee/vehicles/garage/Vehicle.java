@@ -3,11 +3,12 @@ package ro.ugal.aciee.vehicles.garage;
 import ro.ugal.aciee.vehicles.garage.source.VehicleColor;
 
 import javax.swing.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public abstract class Vehicle implements Rentable {
+public abstract class Vehicle implements Rentable, Serializable {
 
     protected UUID id;
     protected int year;
