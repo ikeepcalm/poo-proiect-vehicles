@@ -17,10 +17,10 @@ public class Jetsky extends NavalVehicle {
         super();
     }
 
-    public Jetsky(boolean random){
+    public Jetsky(boolean random) {
         this();
 
-        if(!random){
+        if (!random) {
             return;
         }
 
@@ -32,7 +32,7 @@ public class Jetsky extends NavalVehicle {
         this.color = VehicleColor.values()[index];
         this.maxPassengers = rand.nextInt(10) + 4;
         this.needsMaintenance = rand.nextBoolean();
-        this.maxPayload =  rand.nextInt(2000) + 2000;
+        this.maxPayload = rand.nextInt(2000) + 2000;
         this.canOperateInStorm = rand.nextBoolean();
         this.amountOfPilots = rand.nextInt(3) + 1;
         this.loudness = rand.nextDouble(3.0) + 5.0;
@@ -160,9 +160,9 @@ public class Jetsky extends NavalVehicle {
     @Override
     public String toString() {
         return "Jetsky{" +
-               "amountOfPilots=" + amountOfPilots +
-               ", loudnessl=" + loudness +
-               '}';
+                "amountOfPilots=" + amountOfPilots +
+                ", loudnessl=" + loudness +
+                '}';
     }
 }
 

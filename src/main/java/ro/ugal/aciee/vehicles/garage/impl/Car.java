@@ -130,8 +130,8 @@ public class Car extends RollingVehicle {
     @Override
     public String toString() {
         return "Car{" +
-               "isRadioOn=" + isRadioOn +
-               ", isStorageFull=" + isStorageFull +
-               '}';
+                "isRadioOn=" + isRadioOn +
+                ", isStorageFull=" + isStorageFull +
+                '}';
     }
 }

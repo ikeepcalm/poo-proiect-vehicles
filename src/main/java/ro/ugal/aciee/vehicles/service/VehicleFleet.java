@@ -109,6 +109,33 @@ public class VehicleFleet {
         return availableVehicles;
     }
 
+    public int getRentedVehicleCount() {
+        List<Vehicle> allVehicles = getAllVehicles();
+
+        int rentedVehicles = 0;
+
+        for (Vehicle vehicle : allVehicles) {
+            if (vehicle.isRented()) {
+                ++rentedVehicles;
+            }
+        }
+
+        return rentedVehicles;
+    }
+
+    public int getMaintenanceVehicleCount() {
+        List<Vehicle> allVehicles = getAllVehicles();
+
+        int maintenanceVehicles = 0;
+
+        for (Vehicle vehicle : allVehicles) {
+            if (vehicle.isNeedsMaintenance()) {
+                ++maintenanceVehicles;
+            }
+        }
+        return maintenanceVehicles;
+    }
+
     public List<Vehicle> getVehiclesByColorAndYear(VehicleColor color, int year) {
         List<Vehicle> allVehicles = getAllVehicles();
         List<Vehicle> vehiclesByColorAndYear = new ArrayList<>();

@@ -149,9 +149,9 @@ public class Scooter extends RollingVehicle {
     @Override
     public String toString() {
         return "Scooter{" +
-               "electric=" + electric +
-               ", batteryKWh=" + batteryKWh +
-               ", maxSpeedKmh=" + maxSpeedKmh +
-               '}';
+                "electric=" + electric +
+                ", batteryKWh=" + batteryKWh +
+                ", maxSpeedKmh=" + maxSpeedKmh +
+                '}';
     }
 }

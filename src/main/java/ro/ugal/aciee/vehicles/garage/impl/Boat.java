@@ -17,10 +17,10 @@ public class Boat extends NavalVehicle {
         super();
     }
 
-    public Boat(boolean random){
+    public Boat(boolean random) {
         this();
 
-        if(!random){
+        if (!random) {
             return;
         }
 
@@ -32,7 +32,7 @@ public class Boat extends NavalVehicle {
         this.color = VehicleColor.values()[index];
         this.maxPassengers = rand.nextInt(10) + 4;
         this.needsMaintenance = rand.nextBoolean();
-        this.maxPayload =  rand.nextInt(100) + 350;
+        this.maxPayload = rand.nextInt(100) + 350;
         this.canOperateInStorm = rand.nextBoolean();
         this.hasCabin = rand.nextBoolean();
         this.anchorDropped = rand.nextBoolean();
@@ -142,8 +142,8 @@ public class Boat extends NavalVehicle {
     @Override
     public String toString() {
         return "Boat{" +
-               "anchorDropped=" + anchorDropped +
-               ", hasCabin=" + hasCabin +
-               '}';
+                "anchorDropped=" + anchorDropped +
+                ", hasCabin=" + hasCabin +
+                '}';
     }
 }

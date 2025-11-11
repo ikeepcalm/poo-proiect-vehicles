@@ -90,7 +90,7 @@ public class Truck extends RollingVehicle {
     @Override
     public String toString() {
         return "Truck{" +
-               "isTrailerAttached=" + isTrailerAttached +
-               '}';
+                "isTrailerAttached=" + isTrailerAttached +
+                '}';
     }
 }

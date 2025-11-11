@@ -183,14 +183,14 @@ public abstract class Vehicle implements Rentable, Serializable {
     @Override
     public String toString() {
         return "Vehicle{" +
-               "id=" + id +
-               ", year=" + year +
-               ", mileage=" + mileage +
-               ", color=" + color +
-               ", maxPassengers=" + maxPassengers +
-               ", isRented=" + isRented +
-               ", currentRenterName='" + currentRenterName + '\'' +
-               ", needsMaintenance=" + needsMaintenance +
-               '}';
+                "id=" + id +
+                ", year=" + year +
+                ", mileage=" + mileage +
+                ", color=" + color +
+                ", maxPassengers=" + maxPassengers +
+                ", isRented=" + isRented +
+                ", currentRenterName='" + currentRenterName + '\'' +
+                ", needsMaintenance=" + needsMaintenance +
+                '}';
     }
 }

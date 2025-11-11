@@ -166,8 +166,8 @@ public class Airplane extends AeroVehicle {
     @Override
     public String toString() {
         return "Airplane{" +
-               "isFragileCargo=" + isFragileCargo +
-               ", wingspan=" + wingspan +
-               '}';
+                "isFragileCargo=" + isFragileCargo +
+                ", wingspan=" + wingspan +
+                '}';
     }
 }

@@ -151,9 +151,9 @@ public class Atv extends RollingVehicle {
     @Override
     public String toString() {
         return "Atv{" +
-               "size=" + size +
-               ", spareWheel=" + spareWheel +
-               '}';
+                "size=" + size +
+                ", spareWheel=" + spareWheel +
+                '}';
     }
 }
 

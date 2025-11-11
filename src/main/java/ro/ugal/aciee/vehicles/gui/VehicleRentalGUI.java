@@ -14,22 +14,22 @@ import java.util.Random;
 
 public class VehicleRentalGUI extends JFrame {
 
+    Random random = new Random();
     private VehicleFleet fleet;
     private VehicleTableModel tableModel;
     private JTable vehicleTable;
     private VehicleDetailsPanel detailsPanel;
-
     private JComboBox<String> colorFilterCombo;
+    private JComboBox<String> statusFilterCombo;
     private JSpinner yearFilterSpinner;
     private JTextField priceFilterField;
     private JTextField passengersFilterField;
     private JSpinner daysSpinner;
     private JTextField budgetField;
-
     private JLabel totalVehiclesLabel;
     private JLabel availableVehiclesLabel;
-
-    Random random = new Random();
+    private JLabel rentedVehiclesLabel;
+    private JLabel needsMaintenanceVehiclesLabel;
 
     public VehicleRentalGUI(VehicleFleet fleet) {
         this.fleet = fleet;
@@ -101,19 +101,19 @@ public class VehicleRentalGUI extends JFrame {
         exitMenuItem.addActionListener(e -> System.exit(0));
 
         randomAeroVehicleMenuItem.addActionListener(e -> {
-           boolean n = random.nextBoolean();
-           if (n) {
-               fleet.addAerialVehicle(new Airplane(true));
-           } else {
-               fleet.addAerialVehicle(new Jetplane(true));
-           }
-           JOptionPane.showMessageDialog(this,
-                   (n? "Airplane" : "Jetplane" )+ " generated successfully",
-                   "Success",
-                   JOptionPane.INFORMATION_MESSAGE);
+            boolean randomAeroVehicles = random.nextBoolean();
+            if (randomAeroVehicles) {
+                fleet.addAerialVehicle(new Airplane(true));
+            } else {
+                fleet.addAerialVehicle(new Jetplane(true));
+            }
+            JOptionPane.showMessageDialog(this,
+                    (randomAeroVehicles ? "Airplane" : "Jetplane") + " generated successfully",
+                    "Success",
+                    JOptionPane.INFORMATION_MESSAGE);
 
-           loadVehicles();
-           refreshAll();
+            loadVehicles();
+            refreshAll();
         });
 
         randomNavalVehicleMenuItem.addActionListener(e -> {
@@ -175,10 +175,16 @@ public class VehicleRentalGUI extends JFrame {
         JPanel statusPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         totalVehiclesLabel = new JLabel("Total: 0");
         availableVehiclesLabel = new JLabel("Available: 0");
+        rentedVehiclesLabel = new JLabel("Rented: 0");
+        needsMaintenanceVehiclesLabel = new JLabel("Needs Maintenance: 0");
         statusPanel.add(new JLabel("Fleet Status - "));
         statusPanel.add(totalVehiclesLabel);
         statusPanel.add(new JLabel(" | "));
         statusPanel.add(availableVehiclesLabel);
+        statusPanel.add(new JLabel(" | "));
+        statusPanel.add(rentedVehiclesLabel);
+        statusPanel.add(new JLabel(" | "));
+        statusPanel.add(needsMaintenanceVehiclesLabel);
 
         JPanel filterPanel = new JPanel(new GridBagLayout());
         filterPanel.setBorder(BorderFactory.createTitledBorder("Filters"));
@@ -250,9 +256,12 @@ public class VehicleRentalGUI extends JFrame {
         filterPanel.add(showAllBtn, gbc);
 
         gbc.gridx = 7;
-        JButton showAvailableBtn = new JButton("Available Only");
-        showAvailableBtn.addActionListener(e -> showAvailableOnly());
-        filterPanel.add(showAvailableBtn, gbc);
+        filterPanel.add(new JLabel("Status:"), gbc);
+
+        gbc.gridx = 8;
+        String[] status = {"Available", "Rented", "Needs maintenance"};
+        statusFilterCombo = new JComboBox<>(status);
+        filterPanel.add(statusFilterCombo, gbc);
 
         northPanel.add(statusPanel, BorderLayout.NORTH);
         northPanel.add(filterPanel, BorderLayout.CENTER);
@@ -320,29 +329,13 @@ public class VehicleRentalGUI extends JFrame {
         clearButton.setPreferredSize(new Dimension(120, 35));
         clearButton.addActionListener(e -> clearAll());
 
-        JButton generateButton = new JButton("Generate new vehicle");
-        generateButton.setPreferredSize(new Dimension(120, 35));
-        generateButton.addActionListener(e -> generateNewVehicle());
-
         southPanel.add(rentButton);
         southPanel.add(returnButton);
         southPanel.add(maintenanceButton);
         southPanel.add(refreshButton);
         southPanel.add(clearButton);
-        southPanel.add(generateButton);
 
         add(southPanel, BorderLayout.SOUTH);
-    }
-
-    private void generateNewVehicle() {
-        if (random.nextBoolean()) {
-            fleet.addAerialVehicle(new Airplane(true));
-        } else {
-            fleet.addNavalVehicle(new Jetsky(true));
-        }
-
-        loadVehicles();
-        refreshAll();
     }
 
     private void clearAll() {
@@ -358,15 +351,6 @@ public class VehicleRentalGUI extends JFrame {
 
     private void showAllVehicles() {
         loadVehicles();
-        updateStatusLabels();
-    }
-
-    private void showAvailableOnly() {
-        List<Vehicle> allVehicles = fleet.getAllVehicles();
-        List<Vehicle> available = allVehicles.stream()
-                .filter(v -> !v.isRented() && !v.isNeedsMaintenance())
-                .toList();
-        tableModel.setVehicles(available);
         updateStatusLabels();
     }
 
@@ -395,6 +379,28 @@ public class VehicleRentalGUI extends JFrame {
                         .filter(currentVehicles::contains)
                         .toList();
                 tableModel.setVehicles(doubleFiltered);
+            }
+
+            String selectStatus = (String) statusFilterCombo.getSelectedItem();
+//            if ("Available".equals(selectStatus)) {
+//                List<Vehicle> availableVehicles = fleet.getAvailableVehicle().stream().toList();
+//                tableModel.setVehicles(availableVehicles);
+//            } else if ("Rented".equals(selectStatus)) {
+//                List<Vehicle> rentedVehicles = fleet.getRentedVehicle().stream().toList();
+//                tableModel.setVehicles(rentedVehicles);
+//            } else if ("Needs maintenance".equals(selectStatus)) {
+//                List<Vehicle> maintenanceVehicles = fleet.getMaintenanceVehicle().stream().toList();
+//                tableModel.setVehicles(maintenanceVehicles);
+//            }
+            if ("Available".equals(selectStatus)) {
+                List<Vehicle> availableVehicles = fleet.getAllVehicles().stream().filter(v -> !v.isRented() && !v.isNeedsMaintenance()).toList();
+                tableModel.setVehicles(availableVehicles);
+            } else if ("Rented".equals(selectStatus)) {
+                List<Vehicle> rentedVehicles = fleet.getAllVehicles().stream().filter(Vehicle::isRented).toList();
+                tableModel.setVehicles(rentedVehicles);
+            } else if ("Needs maintenance".equals(selectStatus)) {
+                List<Vehicle> maintenanceVehicles = fleet.getAllVehicles().stream().filter(Vehicle::isNeedsMaintenance).toList();
+                tableModel.setVehicles(maintenanceVehicles);
             }
 
             updateStatusLabels();
@@ -533,6 +539,8 @@ public class VehicleRentalGUI extends JFrame {
     private void updateStatusLabels() {
         totalVehiclesLabel.setText("Total: " + fleet.getTotalVehicleCount());
         availableVehiclesLabel.setText("Available: " + fleet.getAvailableVehicleCount());
+        rentedVehiclesLabel.setText("Rented: " + fleet.getRentedVehicleCount());
+        needsMaintenanceVehiclesLabel.setText("Needs maintenance: " + fleet.getMaintenanceVehicleCount());
     }
 
     public void launch() {

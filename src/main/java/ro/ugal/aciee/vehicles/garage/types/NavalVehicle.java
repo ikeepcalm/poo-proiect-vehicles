@@ -47,9 +47,9 @@ public abstract class NavalVehicle extends Vehicle {
     @Override
     public String toString() {
         return "NavalVehicle{" +
-               "maxPayload=" + maxPayload +
-               ", canOperateInStorm=" + canOperateInStorm +
-               '}';
+                "maxPayload=" + maxPayload +
+                ", canOperateInStorm=" + canOperateInStorm +
+                '}';
     }
 
 

@@ -66,9 +66,9 @@ public abstract class RollingVehicle extends Vehicle {
     @Override
     public String toString() {
         return "RollingVehicle{" +
-               "electric=" + electric +
-               ", horsePower=" + horsePower +
-               ", maxSpeedKmh=" + maxSpeedKmh +
-               '}';
+                "electric=" + electric +
+                ", horsePower=" + horsePower +
+                ", maxSpeedKmh=" + maxSpeedKmh +
+                '}';
     }
 }

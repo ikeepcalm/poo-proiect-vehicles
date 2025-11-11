@@ -140,9 +140,9 @@ public class ElectricBike extends RollingVehicle {
     @Override
     public String toString() {
         return "ElectricBike{" +
-               "range=" + range +
-               ", address='" + address + '\'' +
-               '}';
+                "range=" + range +
+                ", address='" + address + '\'' +
+                '}';
     }
 }
 
