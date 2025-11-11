@@ -382,16 +382,6 @@ public class VehicleRentalGUI extends JFrame {
             }
 
             String selectStatus = (String) statusFilterCombo.getSelectedItem();
-//            if ("Available".equals(selectStatus)) {
-//                List<Vehicle> availableVehicles = fleet.getAvailableVehicle().stream().toList();
-//                tableModel.setVehicles(availableVehicles);
-//            } else if ("Rented".equals(selectStatus)) {
-//                List<Vehicle> rentedVehicles = fleet.getRentedVehicle().stream().toList();
-//                tableModel.setVehicles(rentedVehicles);
-//            } else if ("Needs maintenance".equals(selectStatus)) {
-//                List<Vehicle> maintenanceVehicles = fleet.getMaintenanceVehicle().stream().toList();
-//                tableModel.setVehicles(maintenanceVehicles);
-//            }
             if ("Available".equals(selectStatus)) {
                 List<Vehicle> availableVehicles = fleet.getAllVehicles().stream().filter(v -> !v.isRented() && !v.isNeedsMaintenance()).toList();
                 tableModel.setVehicles(availableVehicles);
