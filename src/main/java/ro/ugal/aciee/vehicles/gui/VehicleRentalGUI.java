@@ -212,17 +212,15 @@ public class VehicleRentalGUI extends JFrame {
         filterPanel.add(new JLabel("Max Price:"), gbc);
 
         gbc.gridx = 5;
-        priceFilterField = new JTextField(8);
-        priceFilterField.setToolTipText("Enter maximum daily price");
-        filterPanel.add(priceFilterField, gbc);
-
-        gbc.gridx = 6;
         filterPanel.add(new JLabel("Min Passengers:"), gbc);
 
+        gbc.gridx = 6;
+        filterPanel.add(new JLabel("Status:"), gbc);
+
         gbc.gridx = 7;
-        passengersFilterField = new JTextField(8);
-        passengersFilterField.setToolTipText("Enter minimum passengers");
-        filterPanel.add(passengersFilterField, gbc);
+        JButton showAllBtn = new JButton("Show All");
+        showAllBtn.addActionListener(e -> showAllVehicles());
+        filterPanel.add(showAllBtn, gbc);
 
         gbc.gridx = 0;
         gbc.gridy = 1;
@@ -241,27 +239,29 @@ public class VehicleRentalGUI extends JFrame {
         filterPanel.add(budgetField, gbc);
 
         gbc.gridx = 4;
+        priceFilterField = new JTextField(8);
+        priceFilterField.setToolTipText("Enter maximum daily price");
+        filterPanel.add(priceFilterField, gbc);
+
+        gbc.gridx = 5;
+        passengersFilterField = new JTextField(8);
+        passengersFilterField.setToolTipText("Enter minimum passengers");
+        filterPanel.add(passengersFilterField, gbc);
+
+        gbc.gridx = 6;
+        String[] status = {"Available", "Rented", "Needs maintenance"};
+        statusFilterCombo = new JComboBox<>(status);
+        filterPanel.add(statusFilterCombo, gbc);
+
+        gbc.gridx = 7;
         JButton applyBasicFilterBtn = new JButton("Filter by Properties");
         applyBasicFilterBtn.addActionListener(e -> applyBasicFilters());
         filterPanel.add(applyBasicFilterBtn, gbc);
 
-        gbc.gridx = 5;
+        gbc.gridx = 8;
         JButton applyBudgetFilterBtn = new JButton("Filter by Budget");
         applyBudgetFilterBtn.addActionListener(e -> applyBudgetFilter());
         filterPanel.add(applyBudgetFilterBtn, gbc);
-
-        gbc.gridx = 6;
-        JButton showAllBtn = new JButton("Show All");
-        showAllBtn.addActionListener(e -> showAllVehicles());
-        filterPanel.add(showAllBtn, gbc);
-
-        gbc.gridx = 7;
-        filterPanel.add(new JLabel("Status:"), gbc);
-
-        gbc.gridx = 8;
-        String[] status = {"Available", "Rented", "Needs maintenance"};
-        statusFilterCombo = new JComboBox<>(status);
-        filterPanel.add(statusFilterCombo, gbc);
 
         northPanel.add(statusPanel, BorderLayout.NORTH);
         northPanel.add(filterPanel, BorderLayout.CENTER);
